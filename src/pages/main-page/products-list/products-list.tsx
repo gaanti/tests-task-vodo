@@ -7,13 +7,11 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './products-list.scss';
 import { StyledCardMedia } from './products-list.styles';
-import { Box, PopperPlacementType } from '@mui/material';
+import { Box } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 import Masonry from '@mui/lab/Masonry';
-import styled from '@mui/styled-engine-sc';
 import { product } from '../../../app/slices/cart/types';
-import { useDispatch } from 'react-redux';
 import { useAppDispatch } from '../../../app/store';
 import { addProductToCart } from '../../../app/slices/cart/cartSlice';
 
@@ -24,7 +22,6 @@ function ProductsList() {
     dispatch(addProductToCart(product));
   };
 
-
   return (
     <Box>
       <Masonry columns={4} spacing={2} sx={{ marginLeft: '0' }}>
@@ -32,19 +29,17 @@ function ProductsList() {
           const height = 150 + Math.random() * 50;
           return (
             <Card>
-              <StyledCardMedia
-                component='img'
-                height={height}
-                image={product.image}
-              />
+              <StyledCardMedia component="img" height={height} image={product.image} />
               <CardContent>
-                <Typography gutterBottom variant='h5' component='div'>
+                <Typography gutterBottom variant="h5" component="div">
                   {product.title}
                 </Typography>
               </CardContent>
               <CardActions sx={{ marginTop: 'auto', height: 'min-content' }}>
-                <Button size='small' onClick={() => addToCart(product)}><AddShoppingCartIcon /></Button>
-                <Button size='small'>Learn More</Button>
+                <Button size="small" onClick={() => addToCart(product)}>
+                  <AddShoppingCartIcon />
+                </Button>
+                <Button size="small">Learn More</Button>
               </CardActions>
             </Card>
           );

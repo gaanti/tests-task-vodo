@@ -1,26 +1,15 @@
 import React from 'react';
-import {
-  AppBar,
-  createTheme, Fade,
-  Paper, Popover,
-  Popper,
-  PopperPlacementType,
-  ThemeProvider,
-  Toolbar,
-  Typography,
-} from '@mui/material';
+import { AppBar, createTheme, Paper, Popover, ThemeProvider, Toolbar, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import Button from '@mui/material/Button';
 import { useSelector } from 'react-redux';
 import { initialStateSelector } from '../../app/slices/cart/cartSlice';
 
 function Navbar() {
-  const cartItems = useSelector(initialStateSelector)
+  const cartItems = useSelector(initialStateSelector);
   const darkTheme = createTheme({ palette: { mode: 'dark' } });
   const lightTheme = createTheme({ palette: { mode: 'light' } });
 
   function AppBarLabel(label: string) {
-
     const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
     const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -35,12 +24,12 @@ function Navbar() {
 
     return (
       <Toolbar>
-        <Typography variant='h6' noWrap component='div' sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
           Test-task navigation
         </Typography>
         <ThemeProvider theme={lightTheme}>
           <Popover
-            id='mouse-over-popover'
+            id="mouse-over-popover"
             sx={{
               pointerEvents: 'none',
             }}
@@ -57,20 +46,24 @@ function Navbar() {
             onClose={handlePopoverClose}
             disableRestoreFocus
           >
-            {cartItems.map(item => {
-              return(
-                <div>
-                  {item.title}
-                </div>
-              )
+            {cartItems.map((item) => {
+              return <div>{item.title}</div>;
             })}
           </Popover>
-          <Paper sx={{
-            padding: '5px', display: 'flex',
-            alignItems: 'center', gap: '8px',
-            cursor: 'pointer',
-          }} onMouseEnter={handlePopoverOpen}
-                 onMouseLeave={handlePopoverClose}><span>Cart</span><ShoppingCartIcon /></Paper>
+          <Paper
+            sx={{
+              padding: '5px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              cursor: 'pointer',
+            }}
+            onMouseEnter={handlePopoverOpen}
+            onMouseLeave={handlePopoverClose}
+          >
+            <span>Cart</span>
+            <ShoppingCartIcon />
+          </Paper>
         </ThemeProvider>
       </Toolbar>
     );
@@ -78,7 +71,9 @@ function Navbar() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <AppBar color='primary' position='static'>{AppBarLabel('default')}</AppBar>
+      <AppBar color="primary" position="static">
+        {AppBarLabel('default')}
+      </AppBar>
     </ThemeProvider>
   );
 }

@@ -12,9 +12,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Wrapper />}>
+        <Route path="/" element={<Wrapper />}>
           <Route index element={<MainPage />} />
-          <Route path='*' element={<div>ERROR PAGE NOT FOUND</div>} />
+          <Route path="*" element={<div>ERROR PAGE NOT FOUND</div>} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -23,7 +23,7 @@ function App() {
 
 function Wrapper() {
   return (
-    <div className='app-wrapper'>
+    <div className="app-wrapper">
       <Navbar />
       <Outlet />
     </div>

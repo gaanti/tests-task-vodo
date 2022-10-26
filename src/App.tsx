@@ -5,7 +5,8 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
-import MainPage from './pages/main-page';
+import MainPage from './pages/main-page/main-page';
+import Navbar from './pages/cross-page/navbar';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
 function Wrapper() {
   return (
     <div className='app-wrapper'>
+      <Navbar />
       <Outlet />
     </div>
   );

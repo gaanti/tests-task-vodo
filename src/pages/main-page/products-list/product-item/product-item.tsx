@@ -21,7 +21,7 @@ function ProductItem(props: {
   itemsInCartList: productForCart[];
   blockWidth?: number;
   blockHeight?: number;
-  fixedBlockHeightBool?: boolean
+  fixedBlockHeightBool?: boolean;
 }) {
   const { product, itemsInCartList } = props;
   const [productColor, setProductColor] = useState(product.colors[0]);
@@ -47,12 +47,12 @@ function ProductItem(props: {
     }
   };
 
-  const tempHeight = props.blockHeight ? props.blockHeight + Math.random() * 50: 150 + Math.random() * 50;
+  const tempHeight = props.blockHeight ? props.blockHeight + Math.random() * 50 : 150 + Math.random() * 50;
   const height = useRef(tempHeight);
   const itemInCartQty = FindAllProductsWithDifferentParams(product);
 
   return (
-    <Card sx={{minWidth: props.blockWidth}}>
+    <Card sx={{ minWidth: props.blockWidth }}>
       <Link to={`item/${product.id}`}>
         <StyledCardMedia component="img" height={height.current} image={product.image} />
       </Link>

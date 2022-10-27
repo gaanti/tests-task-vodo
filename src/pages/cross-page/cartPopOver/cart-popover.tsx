@@ -1,13 +1,8 @@
 import React from 'react';
-import { Box, createTheme, Menu, MenuItem, Paper, ThemeProvider, Typography } from '@mui/material';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import { PopOverCartItemDescription } from '../navbar.styles';
-import CardMedia from '@mui/material/CardMedia';
+import { createTheme, Menu, MenuItem, Paper, ThemeProvider } from '@mui/material';
 import Button from '@mui/material/Button';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { productForCart } from '../../../app/slices/cart/types';
-import CartProductQuantityBar from './cart-product-quantity-bar';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import { Link } from 'react-router-dom';
 import CartPopoverItem from './cartItem/cart-popover-item';
@@ -28,16 +23,14 @@ function CartPopover(props: { cartItems: productForCart[] }) {
   return (
     <ThemeProvider theme={lightTheme}>
       <Menu id="basic-menu" anchorEl={anchorEl} open={open} onClose={handleClose} style={{ padding: '10px' }}>
-        <Link to="cart" style={{all:"unset", cursor: "pointer"}} onClick={ () => setAnchorEl(null)}>
+        <Link to="cart" style={{ all: 'unset', cursor: 'pointer' }} onClick={() => setAnchorEl(null)}>
           <MenuItem sx={{ justifyContent: 'center' }}>
             <span>Go to cart</span>
             <KeyboardDoubleArrowRightIcon />
           </MenuItem>
         </Link>
         {props.cartItems.map((item) => {
-          return (
-            <CartPopoverItem item={item}/>
-          );
+          return <CartPopoverItem item={item} />;
         })}
       </Menu>
       <Button

@@ -1,11 +1,12 @@
 export interface productForCart {
-  quantity: number
-  color: string
-  size: string
-  product: product
+  quantity: number;
+  color: string;
+  size: string;
+  product: product;
 }
+
 export interface product {
-  id: number
+  id: number;
   title: string;
   price: number;
   image: string;

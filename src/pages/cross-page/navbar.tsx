@@ -13,8 +13,8 @@ function Navbar() {
   return (
     <ThemeProvider theme={darkTheme}>
       <AppBar color="primary" position="static">
-        <Toolbar sx={{justifyContent: "space-between"}}>
-          <Link to="/" style={{all:"unset", cursor: "pointer"}}>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
+          <Link to="/" style={{ all: 'unset', cursor: 'pointer' }}>
             <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
               Test-task navigation
             </Typography>

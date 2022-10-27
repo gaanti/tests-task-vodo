@@ -8,13 +8,13 @@ export default function SimpleDialogDemo(props: {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   deleteItemAction: (id: number) => void;
-  itemId: number
+  itemId: number;
 }) {
   const { setOpen, open, deleteItemAction } = props;
   const closeDialog = () => props.setOpen(false);
   const approveAction = () => {
     props.deleteItemAction(props.itemId);
-    closeDialog()
+    closeDialog();
   };
   const cancelAction = () => {
     closeDialog();

@@ -3,11 +3,15 @@ import { darkTheme } from '../../navbar';
 import { Paper, ThemeProvider } from '@mui/material';
 import { product } from '../../../../app/slices/cart/types';
 import './color-options.scss';
-import styled from 'styled-components';
 import { ColorCircle } from './color-options.styles';
 
-function ColorOptions(props: { product: product; productColor: string; setProductColor: (color: string) => void, size?: number }) {
-  if (props.product.colors.length>0) {
+function ColorOptions(props: {
+  product: product;
+  productColor: string;
+  setProductColor: (color: string) => void;
+  size?: number;
+}) {
+  if (props.product.colors.length > 0) {
     return (
       <ThemeProvider theme={darkTheme}>
         <Paper sx={{ display: 'flex', gap: '6px', p: '7px', backgroundColor: '#c4c4c4' }}>
@@ -26,7 +30,8 @@ function ColorOptions(props: { product: product; productColor: string; setProduc
         </Paper>
       </ThemeProvider>
     );
-  } return <></>
+  }
+  return <></>;
 }
 
 export default ColorOptions;

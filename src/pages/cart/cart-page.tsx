@@ -7,7 +7,8 @@ import {
   Container,
   Fade,
   Paper,
-  Popper, PopperPlacementType,
+  Popper,
+  PopperPlacementType,
   Stack,
   Switch,
   TextField,
@@ -17,7 +18,6 @@ import {
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { darkTheme } from '../cross-page/navbar';
 import OrderWrapping from './cart-item/order-wrapping';
 import OrderOptionalPresent from './cart-item/order-optional-present';
 
@@ -38,13 +38,11 @@ function CartPage() {
   const [configurePopperOpen, setConfigurePopperOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState<PopperPlacementType>();
 
-  const handleClick =
-    (newPlacement: PopperPlacementType) =>
-      (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-        setConfigurePopperOpen((prev) => placement !== newPlacement || !prev);
-        setPlacement(newPlacement);
-      };
+  const handleClick = (newPlacement: PopperPlacementType) => (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+    setConfigurePopperOpen((prev) => placement !== newPlacement || !prev);
+    setPlacement(newPlacement);
+  };
 
   return (
     <Container maxWidth={'sm'}>
@@ -52,9 +50,15 @@ function CartPage() {
         {cartItems.map((item) => {
           return (
             <Paper>
-              <CartPopoverItem item={item} >
+              <CartPopoverItem item={item}>
                 <Button onClick={handleClick('bottom')}>Configure order</Button>
-                <Popper sx={{zIndex: "1111111111"}} open={configurePopperOpen} anchorEl={anchorEl} placement={placement} transition>
+                <Popper
+                  sx={{ zIndex: '1111111111' }}
+                  open={configurePopperOpen}
+                  anchorEl={anchorEl}
+                  placement={placement}
+                  transition
+                >
                   {({ TransitionProps }) => (
                     <Fade {...TransitionProps} timeout={350}>
                       <Paper>

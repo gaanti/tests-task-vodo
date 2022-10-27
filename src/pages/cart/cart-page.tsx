@@ -2,11 +2,24 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { cartItemsSelector } from '../../app/slices/cart/cartSlice';
 import CartPopoverItem from '../cross-page/cartPopOver/cartItem/cart-popover-item';
-import { Button, Container, Paper, Stack, TextField, TextFieldProps, ThemeProvider, Typography } from '@mui/material';
+import {
+  Button,
+  Container,
+  Fade,
+  Paper,
+  Popper, PopperPlacementType,
+  Stack,
+  Switch,
+  TextField,
+  TextFieldProps,
+  Typography,
+} from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { darkTheme } from '../cross-page/navbar';
+import OrderWrapping from './cart-item/order-wrapping';
+import OrderOptionalPresent from './cart-item/order-optional-present';
 
 function CartPage() {
   const cartItems = useSelector(cartItemsSelector);
@@ -20,7 +33,18 @@ function CartPage() {
     const limit = 35;
     setComment(e.slice(0, limit));
   };
-  console.log(darkTheme);
+
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const [configurePopperOpen, setConfigurePopperOpen] = React.useState(false);
+  const [placement, setPlacement] = React.useState<PopperPlacementType>();
+
+  const handleClick =
+    (newPlacement: PopperPlacementType) =>
+      (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+        setConfigurePopperOpen((prev) => placement !== newPlacement || !prev);
+        setPlacement(newPlacement);
+      };
 
   return (
     <Container maxWidth={'sm'}>
@@ -28,7 +52,30 @@ function CartPage() {
         {cartItems.map((item) => {
           return (
             <Paper>
-              <CartPopoverItem item={item} />
+              <CartPopoverItem item={item} >
+                <Button onClick={handleClick('bottom')}>Configure order</Button>
+                <Popper sx={{zIndex: "1111111111"}} open={configurePopperOpen} anchorEl={anchorEl} placement={placement} transition>
+                  {({ TransitionProps }) => (
+                    <Fade {...TransitionProps} timeout={350}>
+                      <Paper>
+                        <Stack direction={'row'}>
+                          <Stack>
+                            <Typography>Choose the wrapper</Typography>
+                            <OrderWrapping />
+                          </Stack>
+                          <Stack alignItems={'flex-end'}>
+                            <Stack direction={'row'} alignItems={'center'}>
+                              <Typography>I'd like to get a present</Typography>
+                              <Switch />
+                            </Stack>
+                            <OrderOptionalPresent />
+                          </Stack>
+                        </Stack>
+                      </Paper>
+                    </Fade>
+                  )}
+                </Popper>
+              </CartPopoverItem>
             </Paper>
           );
         })}
@@ -55,9 +102,7 @@ function CartPage() {
         </LocalizationProvider>
         <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
           <Typography>Total price: ${totalPrice}</Typography>
-            <Button variant={'contained'}>
-              Checkout
-            </Button>
+          <Button variant={'contained'}>Checkout</Button>
         </Stack>
       </Stack>
     </Container>

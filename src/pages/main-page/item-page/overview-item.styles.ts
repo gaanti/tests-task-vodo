@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const OverviewItemImage = styled.img`
   height: 80vh;
   border-radius: 20px;
-  box-shadow: 33px -23px 145px -34px rgba(0, 0, 0, 0.44);
 `;
 
 interface OverviewItemSizeProps {

@@ -1,24 +1,131 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import data from '../../../mock-data/mock-data.json';
 import './products-list.scss';
-import { Box } from '@mui/material';
+import { Box, FormControl, InputLabel, MenuItem, Select, Slider, Stack, TextField, Typography } from '@mui/material';
 
 import Masonry from '@mui/lab/Masonry';
 import { product } from '../../../app/slices/cart/types';
 import { useAppSelector } from '../../../app/store';
 import { cartItemsSelector } from '../../../app/slices/cart/cartSlice';
 import ProductItem from './product-item/product-item';
-import Card from '@mui/material/Card';
+import { ConfigureProductsDisplayStylesContainer } from './configureProductsDisplayStyle.styles';
+import { MuiColorInput } from 'mui-color-input';
 
 function ProductsList() {
   const productsInstance: product[] = data;
   const itemsInCartList = useAppSelector(cartItemsSelector);
+  const ref = useRef(null);
+  // @ts-ignore
+  const [masonryElemWidth, setMasonryElemWidth] = useState(ref.current ? ref.current.offsetWidth : 0);
+  const [spacing, setSpacing] = useState(2);
+  const [blockHeight, setBlockHeight] = useState(350);
+  const [fixedBlockHeightBool, setFixedBlockHeightBool] = useState(false);
+  const [blockWidth, setBlockWidth] = useState(370);
+  const [columnsQty, setColumnsQty] = useState(Math.floor(window.outerWidth / blockWidth));
+  const [change, setChange] = useState(false);
+  const [sectionTitle, setSectionTitle] = useState('Available products');
+  const triggerChange = () => {
+    setChange((prevState) => !prevState);
+  };
+  const gap = spacing * 8 * 2;
+  const setCorrectWidth = () => {
+    setBlockWidth(masonryElemWidth / columnsQty - gap);
+  };
+  const handleChange = (event: any, func: (arg: any) => void) => {
+    // @ts-ignore
+    func(event.target.value);
+    triggerChange();
+  };
+
+  useEffect(() => {
+    // @ts-ignore
+    setCorrectWidth();
+  }, [spacing, blockWidth, columnsQty, change]);
+  // @ts-ignore
+
+  console.log(ref.current && ref.current.offsetWidth);
+  useEffect(() => {
+    // @ts-ignore
+    console.log(blockWidth);
+    // setColumnsQty(Math.floor(masonryElemWidth / blockWidth));
+    const block2 = masonryElemWidth / 2 - gap;
+    console.log('block2 ' + block2);
+    const block3 = masonryElemWidth / 3 - gap;
+    console.log('block3 ' + block3);
+    const block4 = masonryElemWidth / 4 - gap;
+    console.log('block4 ' + block4);
+    // setBlockWidth(Math.floor(block));
+  }, [change]);
+  const [color, setColor] = React.useState('#000');
+
+  const handleColorChange = (color: string) => {
+    setColor(color);
+  };
 
   return (
     <Box>
-      <Masonry columns={4} spacing={2} sx={{ marginLeft: '0' }}>
+      <Typography padding={1} variant="h2" color={color}>
+        {sectionTitle}
+      </Typography>
+      <Masonry columns={columnsQty} spacing={spacing} sx={{ marginLeft: '0' }} ref={ref}>
+        <ConfigureProductsDisplayStylesContainer>
+          <Typography variant="h6">Configure appearance</Typography>
+          <Stack gap={2}>
+            <Stack direction={'row'}>
+              <Stack direction={'column'}>
+                <Typography variant="caption">Section title</Typography>
+                <TextField value={sectionTitle} onChange={(e) => setSectionTitle(e.target.value)} />
+              </Stack>
+              <Stack direction={'column'}>
+                <Typography variant="caption">Section font color</Typography>
+                <MuiColorInput value={color} onChange={handleColorChange} />
+              </Stack>
+            </Stack>
+            <Stack direction={'column'}>
+              <Typography variant="caption">Products gap</Typography>
+              <Slider
+                aria-label="Temperature"
+                defaultValue={8}
+                value={spacing}
+                // @ts-ignore
+                onChange={(e) => {
+                  // @ts-ignore
+                  setSpacing(e!.target!.value!);
+                  triggerChange();
+                }}
+                valueLabelDisplay="auto"
+                step={1}
+                marks
+                min={1}
+                max={4}
+              />
+            </Stack>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Columns</InputLabel>
+              <Select
+                defaultValue={masonryElemWidth / 3 - gap}
+                value={columnsQty}
+                label="Product width"
+                onChange={(e) => handleChange(e, setColumnsQty)}
+              >
+                <MenuItem value={2}>2 cols</MenuItem>
+                <MenuItem value={3}>3 cols</MenuItem>
+                <MenuItem value={4}>4 cols</MenuItem>
+              </Select>
+            </FormControl>
+          </Stack>
+        </ConfigureProductsDisplayStylesContainer>
         {productsInstance.map((product) => {
-          return <ProductItem key={product.id} product={product} itemsInCartList={itemsInCartList} />;
+          return (
+            <ProductItem
+              key={product.id}
+              product={product}
+              itemsInCartList={itemsInCartList}
+              blockWidth={blockWidth}
+              blockHeight={blockHeight}
+              fixedBlockHeightBool={fixedBlockHeightBool}
+            />
+          );
         })}
       </Masonry>
     </Box>

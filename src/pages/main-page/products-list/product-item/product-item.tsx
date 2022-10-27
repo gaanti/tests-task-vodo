@@ -16,14 +16,22 @@ import SizeOptions from '../../../cross-page/components/size-options/size-option
 import { Stack } from '@mui/material';
 import { FindAllProductsWithDifferentParams } from '../../../cross-page/cartPopOver/cart-product-quantity-bar';
 
-function ProductItem(props: { product: product; itemsInCartList: productForCart[] }) {
+function ProductItem(props: {
+  product: product;
+  itemsInCartList: productForCart[];
+  blockWidth?: number;
+  blockHeight?: number;
+  fixedBlockHeightBool?: boolean
+}) {
   const { product, itemsInCartList } = props;
   const [productColor, setProductColor] = useState(product.colors[0]);
   const [activeProductSizeOption, setActiveProductSizeOption] = useState(product ? product.sizes[0] : '');
   const dispatch = useAppDispatch();
   const addProduct: addProductToCartInterface = {
-    color: productColor, product: props.product, size: activeProductSizeOption
-  }
+    color: productColor,
+    product: props.product,
+    size: activeProductSizeOption,
+  };
   const addToCart = (product: product) => {
     dispatch(addProductToCart(addProduct));
   };
@@ -39,12 +47,12 @@ function ProductItem(props: { product: product; itemsInCartList: productForCart[
     }
   };
 
-  const tempHeight = 150 + Math.random() * 50;
+  const tempHeight = props.blockHeight ? props.blockHeight + Math.random() * 50: 150 + Math.random() * 50;
   const height = useRef(tempHeight);
-  const itemInCartQty = FindAllProductsWithDifferentParams(product)
+  const itemInCartQty = FindAllProductsWithDifferentParams(product);
 
   return (
-    <Card>
+    <Card sx={{minWidth: props.blockWidth}}>
       <Link to={`item/${product.id}`}>
         <StyledCardMedia component="img" height={height.current} image={product.image} />
       </Link>
@@ -53,7 +61,16 @@ function ProductItem(props: { product: product; itemsInCartList: productForCart[
           {product.title}
         </Typography>
       </CardContent>
-      <CardActions sx={{ marginTop: 'auto', height: 'min-content', display: 'flex', gap: '7px', justifyContent:'space-between', alignItems:'flex-end' }}>
+      <CardActions
+        sx={{
+          marginTop: 'auto',
+          height: 'min-content',
+          display: 'flex',
+          gap: '7px',
+          justifyContent: 'space-between',
+          alignItems: 'flex-end',
+        }}
+      >
         <Stack spacing={2}>
           <ColorOptions product={product} setProductColor={setProductColor} productColor={productColor} />
           <SizeOptions
@@ -64,7 +81,7 @@ function ProductItem(props: { product: product; itemsInCartList: productForCart[
         </Stack>
         <Button size="small" onClick={() => addToCart(product)}>
           <AddShoppingCartIcon />
-          {itemInCartQty && itemInCartQty>0 ? itemInCartQty : ''}
+          {itemInCartQty && itemInCartQty > 0 ? itemInCartQty : ''}
         </Button>
       </CardActions>
     </Card>

@@ -7,6 +7,8 @@ import '@fontsource/roboto/700.css';
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 import MainPage from './pages/main-page/main-page';
 import Navbar from './pages/cross-page/navbar';
+import OverviewItem from './pages/main-page/item-page/overview-item';
+import CartPage from './pages/cart/cart-page';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Wrapper />}>
           <Route index element={<MainPage />} />
+          <Route path="item/:itemId" element={<OverviewItem />} />
+          <Route path="cart" element={<CartPage />} />
           <Route path="*" element={<div>ERROR PAGE NOT FOUND</div>} />
         </Route>
       </Routes>

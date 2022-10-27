@@ -3,7 +3,7 @@
     "id": 1,
     "title": "White sweatshirt 71%",
     "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2204_blue_1.jpg?v=1652957225&width=713",
-    "price": "300.00",
+    "price": 300.00,
     "sizes": [
       "XS",
       "S",
@@ -20,7 +20,7 @@
     "id": 2,
     "title": "Black sweatshirt 71%",
     "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2204_blue_1_543cb91a-ad6d-4205-a7f6-83494a7a5f7e.jpg?v=1652957217&width=713",
-    "price": "300.00",
+    "price": 300.00,
     "sizes": [
       "XS",
       "S",
@@ -37,7 +37,7 @@
     "id": 3,
     "title": "Trench coat POWER",
     "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2211_beige_1.jpg?v=1652957053&width=713",
-    "price": "770.00",
+    "price": 770.00,
     "sizes": [
       "XS",
       "S",
@@ -50,7 +50,7 @@
   {
     "id": 4,
     "title": "White sweatshirt WATER SHINE",
-    "price": "330.00",
+    "price": 330.00,
     "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2219_white_1.jpg?v=1652956879&width=1100",
     "sizes": [
       "XS",
@@ -69,7 +69,7 @@
   {
     "id": 5,
     "title": "Degrade sweatshirt WATER SHINE",
-    "price": "330.00",
+    "price": 330.00,
     "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2219_blue_1.jpg?v=1652956870&width=1100",
     "sizes": [
       "XS",
@@ -88,7 +88,7 @@
   {
     "id": 6,
     "title": "Lime sweatshirt WATER SHINE",
-    "price": "330.00",
+    "price": 330.00,
     "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2219_green_1.jpg?v=1652956861&width=1100",
     "sizes": [
       "XS",
@@ -106,7 +106,7 @@
   {
     "id": 7,
     "title": "Black sweatshirt WATER SHINE",
-    "price": "330.00",
+    "price": 330.00,
     "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2219_black_1.jpg?v=1652956849&width=1100",
     "sizes": [
       "XS",
@@ -124,7 +124,7 @@
   {
     "id": 8,
     "title": "Hoodie WATER SHINE",
-    "price": "360.00",
+    "price": 360.00,
     "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2220_blue_1.jpg?v=1652956839&width=1100",
     "sizes": [
       "XS",

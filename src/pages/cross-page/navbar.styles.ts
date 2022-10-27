@@ -10,6 +10,6 @@ export const NavbarContainer = styled.div`
 export const PopOverCartItemDescription: typeof Typography = styled(Typography)`
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 `;

@@ -12,36 +12,20 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 import Masonry from '@mui/lab/Masonry';
 import { product } from '../../../app/slices/cart/types';
-import { useAppDispatch } from '../../../app/store';
-import { addProductToCart } from '../../../app/slices/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/store';
+import { addProductToCart, initialStateSelector } from '../../../app/slices/cart/cartSlice';
+import ProductItem from './product-item/product-item';
 
 function ProductsList() {
-  const dispatch = useAppDispatch();
   const productsInstance: product[] = data;
-  const addToCart = (product: product) => {
-    dispatch(addProductToCart(product));
-  };
+  const itemsInCartList = useAppSelector(initialStateSelector);
 
   return (
     <Box>
       <Masonry columns={4} spacing={2} sx={{ marginLeft: '0' }}>
         {productsInstance.map((product, index) => {
-          const height = 150 + Math.random() * 50;
           return (
-            <Card>
-              <StyledCardMedia component="img" height={height} image={product.image} />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {product.title}
-                </Typography>
-              </CardContent>
-              <CardActions sx={{ marginTop: 'auto', height: 'min-content' }}>
-                <Button size="small" onClick={() => addToCart(product)}>
-                  <AddShoppingCartIcon />
-                </Button>
-                <Button size="small">Learn More</Button>
-              </CardActions>
-            </Card>
+            <ProductItem product={product} itemsInCartList={itemsInCartList}/>
           );
         })}
       </Masonry>

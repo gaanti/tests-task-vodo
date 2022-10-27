@@ -16,7 +16,6 @@ import CartPopover from './cartPopOver/cart-popover';
 function Navbar() {
   const cartItems = useSelector(initialStateSelector);
   const darkTheme = createTheme({ palette: { mode: 'dark' } });
-[]
   return (
     <ThemeProvider theme={darkTheme}>
       <AppBar color="primary" position="static">

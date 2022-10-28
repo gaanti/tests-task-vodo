@@ -70,7 +70,7 @@ function ProductsList() {
       <Masonry columns={columnsQty} spacing={spacing} sx={{ marginLeft: '0' }} ref={ref}>
         <ConfigureProductsDisplayStylesContainer>
           <Typography variant="h6">Configure appearance</Typography>
-          <Stack gap={2}>
+          <Stack gap={2} overflow={'scroll'}>
             <Stack direction={'row'}>
               <Stack direction={'column'}>
                 <Typography variant="caption">Section title</Typography>
@@ -98,6 +98,25 @@ function ProductsList() {
                 marks
                 min={1}
                 max={4}
+              />
+            </Stack>
+            <Stack direction={'column'}>
+              <Typography variant="caption">Products height</Typography>
+              <Slider
+                aria-label="Temperature"
+                defaultValue={260}
+                value={blockHeight}
+                // @ts-ignore
+                onChange={(e) => {
+                  // @ts-ignore
+                  setBlockHeight(e!.target!.value!);
+                  triggerChange();
+                }}
+                valueLabelDisplay="auto"
+                step={20}
+                marks
+                min={200}
+                max={400}
               />
             </Stack>
             <FormControl fullWidth>

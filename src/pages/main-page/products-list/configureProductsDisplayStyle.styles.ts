@@ -4,5 +4,6 @@ import Card from '@mui/material/Card';
 export const ConfigureProductsDisplayStylesContainer = styled(Card)`
   padding: 10px 20px;
   height: 300px;
-  overflow: scroll;
+  overflow-y: scroll!important;
+  overflow-x: visible!important;
 `;

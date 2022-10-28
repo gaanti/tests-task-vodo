@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import Card from '@mui/material/Card';
 import { StyledCardMedia } from '../products-list.styles';
 import CardContent from '@mui/material/CardContent';
@@ -47,14 +47,18 @@ function ProductItem(props: {
     }
   };
 
-  const tempHeight = props.blockHeight ? props.blockHeight + Math.random() * 50 : 150 + Math.random() * 50;
-  const height = useRef(tempHeight);
+  const tempHeight = useMemo(() => {
+    console.log( props.blockHeight ? props.blockHeight + Math.random() * 50 : 150 + Math.random() * 50);
+    return props.blockHeight ? props.blockHeight + Math.random() * 50 : 150 + Math.random() * 50;
+  }, [props.blockHeight]);
+  // const height = useRef(tempHeight);
+  const height = (tempHeight);
   const itemInCartQty = TotalQtyOfItemInCart(product);
 
   return (
     <Card sx={{ minWidth: props.blockWidth }}>
       <Link to={`item/${product.id}`}>
-        <StyledCardMedia component="img" height={height.current} image={productColor.url} />
+        <StyledCardMedia component="img" height={height} image={productColor.url} />
       </Link>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

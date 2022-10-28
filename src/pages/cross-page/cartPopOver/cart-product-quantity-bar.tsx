@@ -4,7 +4,12 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { product, productForCart } from '../../../app/slices/cart/types';
 import { useAppDispatch, useAppSelector } from '../../../app/store';
-import { cartItemsSelector, minusProductFromCart, plusProductInCart } from '../../../app/slices/cart/cartSlice';
+import {
+  addProductToCart,
+  addProductToCartInterface,
+  cartItemsSelector,
+  minusProductFromCart, plusProductInCart,
+} from '../../../app/slices/cart/cartSlice';
 import SimpleDialogDemo from './approveProductRemoval';
 
 export const FindAllProductsWithDifferentParams = (itemToAdd: product) => {
@@ -15,11 +20,23 @@ export const FindAllProductsWithDifferentParams = (itemToAdd: product) => {
   }
 };
 
-function CartProductQuantityBar(props: { item: productForCart }) {
+function CartProductQuantityBar(props: {
+  item: productForCart;
+  productColor?: string;
+  activeProductSizeOption?: string;
+}) {
   const dispatch = useAppDispatch();
   const [dialogOpen, setDialogOpen] = useState(false);
   const addItem = () => {
-    dispatch(plusProductInCart(props.item.product));
+    if (props.productColor && props.activeProductSizeOption) {
+      console.log(props.item);
+      const asd: addProductToCartInterface = {
+        color: props.productColor,
+        product: props.item.product,
+        size: props.activeProductSizeOption,
+      };
+      dispatch(addProductToCart(asd));
+    } else dispatch(plusProductInCart(props.item.product));
   };
   const deleteItemAction = (id: number) => {
     dispatch(minusProductFromCart(id));

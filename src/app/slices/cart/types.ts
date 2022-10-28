@@ -4,13 +4,15 @@ export interface productForCart {
   size: string;
   product: product;
 }
-
 export interface product {
   id: number;
   title: string;
   price: number;
-  image: string;
   sizes: string[];
-  colors: string[];
+  colors: colors[];
   description: string;
+}
+interface colors {
+  color: string,
+  url: string
 }

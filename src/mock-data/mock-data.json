@@ -2,7 +2,6 @@
   {
     "id": 1,
     "title": "White sweatshirt 71%",
-    "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2204_blue_1.jpg?v=1652957225&width=713",
     "price": 300.00,
     "sizes": [
       "XS",
@@ -11,32 +10,20 @@
       "L"
     ],
     "colors": [
-      "#000",
-      "#fff"
+      {
+        "color": "#fff",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2204_blue_1.jpg?v=1652957225&width=713"
+      },
+      {
+        "color": "#000",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2204_blue_1_543cb91a-ad6d-4205-a7f6-83494a7a5f7e.jpg?v=1652957217&width=713"
+      }
     ],
     "description": "It is especially important for men’s clothes to be comfortable and not movement restricting while also being stylish according to modern trends. This designer’s white sweatshirt for men has a classic shape with elastic bands on the collar, cuffs and hem. The standard cut is adorned with a decorative zipper at the bottom which can be used to create a cutout. One side is made in blue with a textured design depicting sea water. At the back there is a fabric overlay with a concept art of the brand and this particular item. At our online store you can buy a men's sweatshirt with a sea wave print, adding style to your casual or festive fit."
   },
   {
     "id": 2,
-    "title": "Black sweatshirt 71%",
-    "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2204_blue_1_543cb91a-ad6d-4205-a7f6-83494a7a5f7e.jpg?v=1652957217&width=713",
-    "price": 300.00,
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L"
-    ],
-    "colors": [
-      "#000",
-      "#fff"
-    ],
-    "description": "The best wardrobe option that combines comfort and style is a sweatshirt. A comfortable, non-tight fit, soft fabric and stylish design are all that is needed for such an item. The designer version with the standard fit is made in two colors - black and white. There is also a functional zipper on the dividing line, with which you can create a decorative cutout and spice up the regular fit. On the back, there is a fabric overlay on which the concept of the new collection is laid out. In our designer clothes online store you can buy a sweatshirt for men in black and white to create stylish and comfortable looks for every day."
-  },
-  {
-    "id": 3,
     "title": "Trench coat POWER",
-    "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2211_beige_1.jpg?v=1652957053&width=713",
     "price": 770.00,
     "sizes": [
       "XS",
@@ -44,14 +31,17 @@
       "M"
     ],
     "colors": [
+      {
+        "color": "#d9c8b1",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2211_beige_1.jpg?v=1652957053&width=713"
+      }
     ],
     "description": "One of the most successful and high-profile returns to modern women’s fashion was beige trench coats. Beloved by thousands of girls, the style combines versatility and style. Visually, it seems that the raincoat has a standard cut but it is filled with original design details. One of the sides has an additional overlay, under which a blue insert is hiding. The trench coat is fixed with buttons at the front and back, as well as a fabric belt. Buckles on sleeves, slant pockets, a volumetric insert on the back, classic lapels - everything adds to the usual style. Our online store offers a beige trench coat from the new collection, which will emphasize your individuality."
   },
   {
-    "id": 4,
-    "title": "White sweatshirt WATER SHINE",
+    "id": 3,
+    "title": "Sweatshirt WATER SHINE",
     "price": 330.00,
-    "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2219_white_1.jpg?v=1652956879&width=1100",
     "sizes": [
       "XS",
       "S",
@@ -60,17 +50,47 @@
       "XL"
     ],
     "colors": [
-      "#000",
-      "#fff",
-      "#00a2e5"
+      {
+        "color": "#fff",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2219_white_1.jpg?v=1652956879&width=1100"
+      },
+      {
+        "color": "#00a2e5",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2219_blue_1.jpg?v=1652956870&width=720"
+      },
+      {
+        "color": "#00ff00",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2219_green_1.jpg?v=1652956861&width=720"
+      },
+      {
+        "color": "#000",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2219_black_1.jpg?v=1652956849&width=720"
+      }
     ],
     "description": "A sweatshirt is an important wardrobe item that will warm the wearer on cool days and serve as the base for a stylish casual look. This white sweatshirt for women has an elongated free cut, enveloping the silhouette. Overall, the garment is made in a classic style with elastic bands on the collar, sleeves and hem. However, the sweatshirt looks like it is a couple of sizes larger. This technique is often used by designers when creating cozy garments. A zip at the side can be used to create a decorative cutout. Our online store offers a white oversized sweatshirt that can be a comfortable and beautiful base for any look in everyday life."
   },
   {
+    "id": 4,
+    "title": "Hoodie WATER SHINE",
+    "price": 360.00,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      {
+        "color": "#00a2e5",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2220_blue_1.jpg?v=1652956839&width=1100"
+      }
+    ],
+    "description": "A men's hoodie is an important piece of clothing with popularity justified by its high level of comfort and stylish fit into different looks. The designer version of the item has a texture resembling crystal seawater. This light blue hoodie is made in a classic style with a loose fit, a deep hood, and elastic bands on the sleeves and belt. The insulating composition of the fabric will give the owner comfort and warmth on cool days. Modern trends allow you to wear this piece of clothing even with a sophisticated jacket or a raincoat. Our online store offers a men's blue hoodie with which every combination created will sparkle with new colors."
+  },
+  {
     "id": 5,
-    "title": "Degrade sweatshirt WATER SHINE",
-    "price": 330.00,
-    "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2219_blue_1.jpg?v=1652956870&width=1100",
+    "title": "Black hoodie SACRED ENERGY",
+    "price": 360.00,
     "sizes": [
       "XS",
       "S",
@@ -79,64 +99,70 @@
       "XL"
     ],
     "colors": [
-      "#000",
-      "#fff",
-      "#00a2e5"
+      {
+        "color": "#000",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2234_black_1.jpg?v=1652956721"
+      }
     ],
-    "description": "On cold gray days, you often want bright colors and comfort. A blue sweatshirt for women will perfectly accomplish this task. Thanks to the elongated free cut, the wearer will be able to wrap herself up in the item, as if in a blanket. A functional zipper on the side of the garment allows for a decorative cut. The textured print resembles clear seawater with overflows. The new collection features trousers and leggings in the same color, with which you can create a stylish suit for everyday life or special events. Our online store offers an oversized women's sweatshirt to feel comfortable and confident at any time."
+    "description": "In modern fashion, it is difficult to do without comfortable sweatshirts and hoodies. The item went beyond the purely sporty style and became part of even the most elegant looks. This men's black hoodie provides comfort and a stylish look under any conditions. The garment is made in a classic style with elastic bands on the sleeves and belt, as well as a deep hood. The hoodie looks great with sweatpants or jeans, as well as with regular trousers. Quality fabric composition provides a cozy feel and warmth. Our online store offers a men's black hoodie, as well as choosing from an assortment of pants to make a universal two-piece suit."
   },
   {
     "id": 6,
-    "title": "Lime sweatshirt WATER SHINE",
-    "price": 330.00,
-    "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2219_green_1.jpg?v=1652956861&width=1100",
+    "title": "Black hoodie NAKED SOUL",
+    "price": 400.00,
     "sizes": [
       "XS",
       "S",
-      "M",
-      "L"
+      "M"
     ],
     "colors": [
-      "#fff",
-      "#00a2e5",
-      "#000"
+      {
+        "color": "#000",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2237_black_1.jpg?v=1652956690"
+      }
     ],
-    "description": "A sweatshirt is one of the most versatile pieces in any girl's wardrobe. The item has distinctive features: a round collar, no pockets or lacing, a loose sleeve with a beveled line, as well as an elastic band on the collar, cuff and waist. This women's sweatshirt with a zipper has an elongated loose fit, which provides comfort and warmth. There is a functional zip on the side that can be used to create a decorative cutout. The garment goes well with trousers, jeans, leggings and even skirts. Our online store offers a pink sweatshirt for women, as well as to choose from the assortment of other favorite colors the item comes in."
+    "description": "A hoodie is considered an essential piece of basic wardrobe. On its basis, you can create a lot of stylish looks and provide yourself with comfort for the whole day. Oversized hoodie in black is an original embodiment of a classic cut. Instead of a closed front, a deep cut is used, smoothly flowing into the seductive cutouts in the chest area. The designer version is intended for brave and confident girls. In general, the item has standard features - a deep hood, loose fit, as well as elastic bands on the sleeves and belt. In our online store you can buy a women's black hoodie to add comfort and unusual accents to the laconic style."
   },
   {
     "id": 7,
-    "title": "Black sweatshirt WATER SHINE",
-    "price": 330.00,
-    "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2219_black_1.jpg?v=1652956849&width=1100",
+    "title": "SHANTI jacket",
+    "price": 600.00,
     "sizes": [
       "XS",
       "S",
-      "M",
-      "L"
+      "M"
     ],
     "colors": [
-      "#fff",
-      "#00a2e5",
-      "#000"
+      {
+        "color": "#000",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2236_black_1.jpg?v=1652956700"
+      }
     ],
-    "description": "Loose, cozy garments always come to the rescue for modern looks. This item will warm you on cold days, provide coziness and unobstructed movement. A black sweatshirt for women allows you to create stylish casual, athletic and even festive looks. The oversized fit provides total comfort for an active lifestyle. The garment has an elongated cut and side zipper. The latter element allows for a high decorative cut. In combination with leggings, trousers or jeans, the sweatshirt looks especially striking. Our online store offers a black sweatshirt with an elongated cut, created especially for comfort and stylish combinations."
+    "description": "The fashion for classics continues to flourish. In addition, these wardrobe items are harmoniously combined with other styles. This women's black jacket from the new collection has a straight fit, classic lapels and a side button closure. Brand prints and a decorative cut on the side are used as decorations. The inner lining is in blue with a nautical print. It has an inner pocket with a spare button. According to modern trends, you can even wear this jacket with bicycle shorts. Our online store offers a women's black jacket in order to complement the look by something special and stylish at any time."
   },
   {
     "id": 8,
-    "title": "Hoodie WATER SHINE",
-    "price": 360.00,
-    "image": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2220_blue_1.jpg?v=1652956839&width=1100",
+    "title": "Hoodie HEART of UA",
+    "price": 385.00,
     "sizes": [
       "XS",
       "S",
-      "M",
-      "L"
+      "M"
     ],
     "colors": [
-      "#fff",
-      "#00a2e5",
-      "#000"
+      {
+        "color": "#db3e83",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2224_pink_1.jpg?v=1652956802"
+      },
+      {
+        "color": "#fff",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2224_white_1.jpg?v=1652956818"
+      },
+      {
+        "color": "#000",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2224_black_1.jpg?v=1652956793"
+      }
     ],
-    "description": "A men's hoodie is an important piece of clothing with popularity justified by its high level of comfort and stylish fit into different looks. The designer version of the item has a texture resembling crystal seawater. This light blue hoodie is made in a classic style with a loose fit, a deep hood, and elastic bands on the sleeves and belt. The insulating composition of the fabric will give the owner comfort and warmth on cool days. Modern trends allow you to wear this piece of clothing even with a sophisticated jacket or a raincoat. Our online store offers a men's blue hoodie with which every combination created will sparkle with new colors."
+    "description": "There are often times when you need to put something warmer over a shirt, T-shirt or a golf. A men's white zip-up hoodie will accomplish this task just fine. The garment fits well with different styles and provides comfort. The jacket is made in a classic style - with a drawstring hood, slanting pockets with zippers and elastic bands on the sleeves and belt. A decorative heart-shaped cutout adorns the front and defines the item as part of the new brand collection. The sweatshirt fits well with both athletic and casual looks. Our online store offers a men's white hoodie for total comfort, warmth and stylish appearance."
   }
 ]

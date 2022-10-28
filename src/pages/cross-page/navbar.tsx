@@ -16,7 +16,7 @@ function Navbar() {
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Link to="/" style={{ all: 'unset', cursor: 'pointer' }}>
             <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-              Test-task navigation
+              Voodoo test-task
             </Typography>
           </Link>
           {cartItems.length > 0 && <CartPopover cartItems={cartItems} />}

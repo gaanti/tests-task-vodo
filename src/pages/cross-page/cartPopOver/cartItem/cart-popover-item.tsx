@@ -11,6 +11,7 @@ import { ColorCircle } from '../../components/color-options/color-options.styles
 
 function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[] }) {
   const { item } = props;
+  console.log(item.product);
   return (
     <Card sx={{ display: 'flex', width: '600px' }} key={item.product.id}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -31,6 +32,8 @@ function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[]
             {item.product.description}
           </PopOverCartItemDescription>
         </CardContent>
+        {!props.children && <CartProductQuantityBar item={item} />}
+
         {props.children && (
           <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
             <CartProductQuantityBar item={item} />
@@ -39,7 +42,12 @@ function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[]
         )}
       </Box>
       <Link to={`/item/${item.product.id}`}>
-        <CardMedia component="img" sx={{ width: 151 }} image={item.product.image} alt="Live from space album cover" />
+        <CardMedia
+          component="img"
+          sx={{ width: 151 }}
+          image={item.product.colors[0].url}
+          alt="Live from space album cover"
+        />
       </Link>
     </Card>
   );

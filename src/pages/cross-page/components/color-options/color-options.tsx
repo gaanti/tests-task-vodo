@@ -15,7 +15,8 @@ function ColorOptions(props: {
     return (
       <ThemeProvider theme={darkTheme}>
         <Paper sx={{ display: 'flex', gap: '6px', p: '7px', backgroundColor: '#c4c4c4' }}>
-          {props.product.colors.map((color) => {
+          {props.product.colors.map((colors) => {
+            const {color} = colors
             return (
               <ColorCircle
                 color={color}

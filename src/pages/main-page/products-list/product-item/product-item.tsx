@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Card from '@mui/material/Card';
 import { StyledCardMedia } from '../products-list.styles';
 import CardContent from '@mui/material/CardContent';
@@ -48,11 +48,14 @@ function ProductItem(props: {
   };
 
   const tempHeight = useMemo(() => {
-    console.log( props.blockHeight ? props.blockHeight + Math.random() * 50 : 150 + Math.random() * 50);
-    return props.blockHeight ? props.blockHeight + Math.random() * 50 : 150 + Math.random() * 50;
-  }, [props.blockHeight]);
+    const defaultHeight = props.blockHeight ? props.blockHeight : 150;
+    console.log(defaultHeight);
+    const randomizedHeightAdjustment = !props.fixedBlockHeightBool ? Math.random() * 50 : 0;
+    console.log(randomizedHeightAdjustment);
+    return defaultHeight + randomizedHeightAdjustment;
+  }, [props.blockHeight, props.fixedBlockHeightBool]);
   // const height = useRef(tempHeight);
-  const height = (tempHeight);
+  const height = tempHeight;
   const itemInCartQty = TotalQtyOfItemInCart(product);
 
   return (

@@ -1,7 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import data from '../../../mock-data/mock-data.json';
 import './products-list.scss';
-import { Box, FormControl, InputLabel, MenuItem, Select, Slider, Stack, TextField, Typography } from '@mui/material';
+import {
+  Box, Checkbox,
+  FormControl,
+  FormControlLabel,
+  InputLabel,
+  MenuItem,
+  Select,
+  Slider,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
 
 import Masonry from '@mui/lab/Masonry';
 import { product } from '../../../app/slices/cart/types';
@@ -100,24 +111,37 @@ function ProductsList() {
                 max={4}
               />
             </Stack>
-            <Stack direction={'column'}>
-              <Typography variant="caption">Products height</Typography>
-              <Slider
-                aria-label="Temperature"
-                defaultValue={260}
-                value={blockHeight}
-                // @ts-ignore
-                onChange={(e) => {
+            <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
+              <Stack direction={'column'} width={"68%"}>
+                <Typography variant="caption">Products height</Typography>
+                <Slider
+                  aria-label="Temperature"
+                  defaultValue={260}
+                  value={blockHeight}
                   // @ts-ignore
-                  setBlockHeight(e!.target!.value!);
-                  triggerChange();
-                }}
-                valueLabelDisplay="auto"
-                step={20}
-                marks
-                min={200}
-                max={400}
-              />
+                  onChange={(e) => {
+                    // @ts-ignore
+                    setBlockHeight(e!.target!.value!);
+                    triggerChange();
+                  }}
+                  valueLabelDisplay="auto"
+                  step={20}
+                  marks
+                  min={200}
+                  max={400}
+                />
+              </Stack>
+              <Stack direction={'column'} width={'min-content'}>
+                <FormControlLabel
+                  label="Static height"
+                  control={
+                    <Checkbox
+                      checked={fixedBlockHeightBool}
+                      onChange={() => {setFixedBlockHeightBool(prevState => !prevState)}}
+                    />
+                  }
+                />
+              </Stack>
             </Stack>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Columns</InputLabel>

@@ -1,9 +1,17 @@
 import styled from 'styled-components';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 export const OverviewItemColor = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+`;
+export const CloseItem = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
 `;
 
 interface OverviewItemSizeProps {

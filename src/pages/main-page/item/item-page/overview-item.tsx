@@ -6,7 +6,7 @@ import { useAppSelector } from '../../../../app/store';
 import { cartItemsSelector } from '../../../../app/slices/cart/cartSlice';
 import OvItem from './OV_item';
 
-function OverviewItem(props:{id?:number}) {
+function OverviewItem(props:{id?:number, handleCloseItemModal(): void;}) {
   const { itemId } = useParams();
   const productsInstance: product[] = data;
   const NumberIdeaId = Number(itemId ? itemId : props.id);
@@ -27,6 +27,7 @@ function OverviewItem(props:{id?:number}) {
     };
     return (
       <OvItem
+        handleCloseItemModal={props.handleCloseItemModal}
         productColor={productColor}
         setProductColor={setProductColor}
         activeProductSizeOption={activeProductSizeOption}

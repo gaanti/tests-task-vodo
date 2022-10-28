@@ -11,7 +11,6 @@ function ItemDialog(props: {
 }) {
   return (
     <div>
-      <Button onClick={props.handleOpenItemModal}>Open modal</Button>
       <Modal
         open={props.openItemModal}
         onClose={props.handleCloseItemModal}
@@ -19,7 +18,7 @@ function ItemDialog(props: {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <OverviewItem id={props.product.id} />
+        <OverviewItem id={props.product.id} handleCloseItemModal={props.handleCloseItemModal}/>
       </Modal>
     </div>
   );

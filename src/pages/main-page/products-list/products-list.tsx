@@ -21,7 +21,6 @@ import { cartItemsSelector } from '../../../app/slices/cart/cartSlice';
 import ProductItem from './product-item/product-item';
 import { ConfigureProductsDisplayStylesContainer } from './configureProductsDisplayStyle.styles';
 import { MuiColorInput } from 'mui-color-input';
-import { adaptColumnsQty } from './adaptDataToDevice';
 
 function ProductsList() {
   const productsInstance: product[] = data;
@@ -33,17 +32,19 @@ function ProductsList() {
   const [blockHeight, setBlockHeight] = useState(350);
   const [fixedBlockHeightBool, setFixedBlockHeightBool] = useState(false);
   const [blockWidth, setBlockWidth] = useState(adaptColumnsQty().maxColumnWidth);
-  const maxColumnsQty = adaptColumnsQty().maxColumnsQty;
-  const [columnsQty, setColumnsQty] = useState(2);
+
+  const res = adaptColumnsQty();
+  const res2 = res.maxColumnsQty;
+  const res3 = Number(JSON.stringify(JSON.parse(String(res2))));
+  const [columnsQty, setColumnsQty] = useState(res3);
+  useEffect(() => {
+    console.log(columnsQty);
+    setColumnsQty(Number(res3));
+  }, []);
   const [change, setChange] = useState(false);
   const [sectionTitle, setSectionTitle] = useState('Available products');
-  const adaptedColumns = adaptColumnsQty();
   const triggerChange = () => {
     setChange((prevState) => !prevState);
-  };
-  const gap = spacing * 8 * 2;
-  const setCorrectWidth = () => {
-    // setBlockWidth(masonryElemWidth / columnsQty - gap);
   };
   const handleChange = (event: any, func: (arg: any) => void) => {
     // @ts-ignore
@@ -51,27 +52,21 @@ function ProductsList() {
     triggerChange();
   };
 
-  useEffect(() => {
-    // setCorrectWidth();
-  }, [spacing, blockWidth, columnsQty, change]);
+  useEffect(() => {}, [spacing, blockWidth, columnsQty, change]);
   const [color, setColor] = React.useState('#000');
 
   const handleColorChange = (color: string) => {
     setColor(color);
   };
   const columnOptions = () => {
+    console.log(adaptColumnsQty().maxColumnsQty);
     const initializedArr = Array(adaptColumnsQty().maxColumnsQty).fill(0);
     return initializedArr.map((_option, index) => {
       if (index > 1) {
-        return <MenuItem value={index}>{index} cols</MenuItem>;
+        return <MenuItem value={index+1}>{index+1} cols</MenuItem>;
       }
     });
   };
-
-  useEffect(() => {
-    console.log(window.screen.width / columnsQty);
-    console.log(123123123123);
-  }, []);
 
   return (
     <Box>
@@ -111,25 +106,32 @@ function ProductsList() {
                 max={4}
               />
             </Stack>
-            <Stack direction={'column'}>
-              <Typography variant="caption">Products width</Typography>
-              <Slider
-                aria-label="Temperature"
-                defaultValue={8}
-                value={blockWidth}
-                // @ts-ignore
-                onChange={(e) => {
+            { (window.screen.width / Number(columnsQty) - 30) > 270 &&
+              <Stack direction={'column'}>
+                <Typography variant="caption">Products width</Typography>
+                {/*If I turn off this slider the problem disapears*/}
+                <Slider
+                  aria-label="Temperature"
+                  defaultValue={8}
+                  // value={blockWidth}
                   // @ts-ignore
-                  setBlockWidth(e!.target!.value!);
-                  triggerChange();
-                }}
-                valueLabelDisplay="auto"
-                step={10}
-                marks
-                min={270}
-                max={window.screen.width / columnsQty - 30}
-              />
-            </Stack>
+                  onChange={(e) => {
+                    // @ts-ignore
+                    setBlockWidth(e!.target!.value!);
+                    triggerChange();
+                  }}
+                  valueLabelDisplay="auto"
+                  step={10}
+                  marks
+                  min={270}
+                  max={
+                    window.screen.width / Number(columnsQty) - 30 > 270
+                      ? window.screen.width / Number(columnsQty) - 30
+                      : 270
+                  }
+                />
+              </Stack>
+            }
             <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
               <Stack direction={'column'} width={'68%'}>
                 <Typography variant="caption">Products height</Typography>
@@ -141,6 +143,7 @@ function ProductsList() {
                   onChange={(e) => {
                     // @ts-ignore
                     setBlockHeight(e!.target!.value!);
+                    setFixedBlockHeightBool(true);
                     triggerChange();
                   }}
                   valueLabelDisplay="auto"
@@ -192,6 +195,46 @@ function ProductsList() {
       </Masonry>
     </Box>
   );
+}
+function adaptColumnsQty() {
+  const deviceWidth = window.screen.width;
+  if (deviceWidth <= 450) {
+    const adaptedColumns: adaptedColumns = {
+      maxColumnWidth: 190,
+      maxColumnsQty: 2,
+    };
+    return adaptedColumns;
+  }
+  if (deviceWidth <= 770) {
+    const adaptedColumns: adaptedColumns = {
+      maxColumnWidth: 240,
+      maxColumnsQty: 3,
+    };
+    return adaptedColumns;
+  }
+  if (deviceWidth <= 1000) {
+    const adaptedColumns: adaptedColumns = {
+      maxColumnsQty: 4,
+      maxColumnWidth: 250,
+    };
+    return adaptedColumns;
+  }
+  if (deviceWidth > 1000) {
+    const adaptedColumns: adaptedColumns = {
+      maxColumnsQty: 5,
+      maxColumnWidth: deviceWidth / 4 - 20,
+    };
+    return adaptedColumns;
+  }
+  const adaptedColumns: adaptedColumns = {
+    maxColumnsQty: 3,
+    maxColumnWidth: deviceWidth / 3 - 40,
+  };
+  return adaptedColumns;
+}
+interface adaptedColumns {
+  maxColumnsQty: number;
+  maxColumnWidth: number;
 }
 
 export default ProductsList;

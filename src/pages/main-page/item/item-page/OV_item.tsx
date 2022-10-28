@@ -1,6 +1,6 @@
 import React from 'react';
 import { colors, productForCart } from '../../../../app/slices/cart/types';
-import { Stack } from '@mui/material';
+import { Paper, Stack } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -9,7 +9,8 @@ import CardActions from '@mui/material/CardActions';
 import SizeOptions from '../../../cross-page/components/size-options/size-options';
 import ColorOptions from '../../../cross-page/components/color-options/color-options';
 import CartProductQuantityBar from '../../../cross-page/cartPopOver/cart-product-quantity-bar';
-import { OverviewItemColor } from './overview-item.styles';
+import { CloseItem, OverviewItemColor } from './overview-item.styles';
+import CloseIcon from '@mui/icons-material/Close';
 
 function OvItem(props: {
   productForCart: productForCart;
@@ -17,11 +18,19 @@ function OvItem(props: {
   setProductColor: React.Dispatch<React.SetStateAction<colors | undefined>>;
   activeProductSizeOption: string;
   setActiveProductSizeOption: React.Dispatch<React.SetStateAction<string>>;
+  handleCloseItemModal(): void;
 }) {
   const { productForCart, productColor, setProductColor, activeProductSizeOption, setActiveProductSizeOption } = props;
   const { product } = productForCart;
   return (
-    <Stack width={'fit-content'} margin={'auto'} direction="row" justifyContent={'center'} spacing={4} overflow={'scroll'}>
+    <Stack
+      width={'fit-content'}
+      margin={'auto'}
+      direction="row"
+      justifyContent={'center'}
+      spacing={4}
+      overflow={'scroll'}
+    >
       <Card sx={{ maxWidth: '400px', position: 'relative', overflow: 'scroll' }}>
         {/*<OverviewItemImage src={product.image} />*/}
         <CardMedia component="img" height="600" image={productColor.url} alt="Paella dish" />
@@ -30,31 +39,36 @@ function OvItem(props: {
             <ColorOptions size={25} product={product} setProductColor={setProductColor} productColor={productColor} />
           </OverviewItemColor>
         )}
+        <CloseItem onClick={() => props.handleCloseItemModal()}>
+          <Paper sx={{ display: 'flex', gap: '6px', p: '7px', backgroundColor: '#c4c4c4' }}>
+            <CloseIcon />
+          </Paper>
+        </CloseItem>
         <Stack spacing={2}>
           <CardContent>
             <Typography variant="h5">{product.title}</Typography>
             <Typography variant="subtitle1">${product.price} USD</Typography>
             <Typography variant="subtitle2">{product.description}</Typography>
           </CardContent>
-          <CardActions sx={{justifyContent:'space-between'}}>
-              <div>
-                <Typography variant="h6">Size</Typography>
-                <SizeOptions
-                  product={product}
+          <CardActions sx={{ justifyContent: 'space-between' }}>
+            <div>
+              <Typography variant="h6">Size</Typography>
+              <SizeOptions
+                product={product}
+                activeProductSizeOption={activeProductSizeOption}
+                setActiveProductSizeOption={setActiveProductSizeOption}
+              />
+            </div>
+            <Stack direction={'column'} alignItems={'center'}>
+              <Typography variant="h6">Quantity</Typography>
+              {
+                <CartProductQuantityBar
+                  productColor={productColor}
+                  item={props.productForCart}
                   activeProductSizeOption={activeProductSizeOption}
-                  setActiveProductSizeOption={setActiveProductSizeOption}
                 />
-              </div>
-              <Stack direction={'column'} alignItems={'center'}>
-                <Typography variant='h6'>Quantity</Typography>
-                {
-                  <CartProductQuantityBar
-                    productColor={productColor}
-                    item={props.productForCart}
-                    activeProductSizeOption={activeProductSizeOption}
-                  />
-                }
-              </Stack>
+              }
+            </Stack>
           </CardActions>
         </Stack>
       </Card>

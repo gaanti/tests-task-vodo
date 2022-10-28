@@ -28,11 +28,9 @@ function ProductItem(props: {
   const [activeProductSizeOption, setActiveProductSizeOption] = useState(product ? product.sizes[0] : '');
   const [openItemModal, setOpenItemModal] = React.useState(false);
   const handleOpenItemModal = () => {
-    console.log('open');
     setOpenItemModal(true);
   };
   const handleCloseItemModal = () => {
-    console.log('close');
     setOpenItemModal(false);
   };
   const itemInCartQty = TotalQtyOfItemInCart(product);
@@ -49,10 +47,11 @@ function ProductItem(props: {
     const randomizedHeightAdjustment = !props.fixedBlockHeightBool ? Math.random() * 50 : 0;
     return defaultHeight + randomizedHeightAdjustment;
   }, [props.blockHeight, props.fixedBlockHeightBool]);
+  console.log(props.blockWidth);
   return (
   // @ts-ignore
   //   <Card sx={{ maxWidth: Math.round(props.blockWidth) }}>
-    <Card sx={{ maxWidth: Math.round(props.blockWidth) }}>
+    <Card sx={{ maxWidth: Math.floor(props.blockWidth) }}>
       <StyledCardMedia component="img" height={Math.round(height) } image={productColor.url} onClick={() => handleOpenItemModal()} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" margin={0}>

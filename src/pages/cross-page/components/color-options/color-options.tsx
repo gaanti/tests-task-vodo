@@ -11,14 +11,12 @@ function ColorOptions(props: {
   setProductColor: (color: colors) => void;
   size?: number;
 }) {
-  console.log(props.productColor.color);
   if (props.product.colors.length > 0) {
     return (
       <ThemeProvider theme={darkTheme}>
         <Paper sx={{ display: 'flex', gap: '6px', p: '7px', backgroundColor: '#c4c4c4' }}>
           {props.product.colors.map((colors) => {
             const {color} = colors
-            console.log(color == props.productColor.color);
             return (
               <ColorCircle
                 color={color}

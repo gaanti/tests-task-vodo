@@ -21,7 +21,6 @@ function OvItem(props: {
   handleCloseItemModal(): void;
 }) {
   const { productForCart, productColor, setProductColor, activeProductSizeOption, setActiveProductSizeOption } = props;
-  console.log(productColor.color);
   const { product } = productForCart;
   return (
     <Stack

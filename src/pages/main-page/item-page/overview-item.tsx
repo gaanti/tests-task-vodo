@@ -19,7 +19,7 @@ function OverviewItem() {
   const productsInstance: product[] = data;
   const NumberIdeaId = Number(itemId);
   const product = productsInstance.find((product) => product.id === NumberIdeaId);
-  const [productColor, setProductColor] = useState(product ? product.colors[0].color : '');
+  const [productColor, setProductColor] = useState(product && product.colors[0]);
   const [activeProductSizeOption, setActiveProductSizeOption] = useState(product ? product.sizes[0] : '');
 
   const itemsInCartList = useAppSelector(cartItemsSelector);
@@ -29,9 +29,9 @@ function OverviewItem() {
   console.log(ItemInCart);
 
   const [quantity, setQuantity] = useState(1);
-  if (itemId && !isNaN(NumberIdeaId) && product) {
+  if (itemId && !isNaN(NumberIdeaId) && product && productColor) {
     const productForCar: productForCart = {
-      color: productColor,
+      color: productColor.color,
       size: activeProductSizeOption,
       product: product,
       quantity: ItemInCart ? quantity : 0,
@@ -59,7 +59,7 @@ function OverviewItem() {
               </div>
               {
                 //checking for exis
-                product.colors.length > 0 && (
+                product.colors.length > 0 && productColor && (
                   <div>
                     <Typography variant="h6">Color</Typography>
                     <ColorOptions

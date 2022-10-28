@@ -1,14 +1,14 @@
 import React from 'react';
 import { darkTheme } from '../../navbar';
 import { Paper, ThemeProvider } from '@mui/material';
-import { product } from '../../../../app/slices/cart/types';
+import { colors, product } from '../../../../app/slices/cart/types';
 import './color-options.scss';
 import { ColorCircle } from './color-options.styles';
 
 function ColorOptions(props: {
   product: product;
-  productColor: string;
-  setProductColor: (color: string) => void;
+  productColor: colors
+  setProductColor: (color: colors) => void;
   size?: number;
 }) {
   if (props.product.colors.length > 0) {
@@ -20,10 +20,10 @@ function ColorOptions(props: {
             return (
               <ColorCircle
                 color={color}
-                className={`${color == props.productColor ? 'active' : ''}`}
+                className={`${color == props.productColor.color ? 'active' : ''}`}
                 key={color}
                 onClick={() => {
-                  props.setProductColor(color);
+                  props.setProductColor(colors);
                 }}
               />
             );

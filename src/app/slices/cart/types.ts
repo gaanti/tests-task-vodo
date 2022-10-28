@@ -12,7 +12,7 @@ export interface product {
   colors: colors[];
   description: string;
 }
-interface colors {
+export interface colors {
   color: string,
   url: string
 }

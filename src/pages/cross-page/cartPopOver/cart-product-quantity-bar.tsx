@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, IconButton, Typography } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { product, productForCart } from '../../../app/slices/cart/types';
+import { colors, product, productForCart } from '../../../app/slices/cart/types';
 import { useAppDispatch, useAppSelector } from '../../../app/store';
 import {
   addProductToCart,
@@ -22,7 +22,7 @@ export const FindAllProductsWithDifferentParams = (itemToAdd: product) => {
 
 function CartProductQuantityBar(props: {
   item: productForCart;
-  productColor?: string;
+  productColor?: colors;
   activeProductSizeOption?: string;
 }) {
   const dispatch = useAppDispatch();
@@ -31,7 +31,7 @@ function CartProductQuantityBar(props: {
     if (props.productColor && props.activeProductSizeOption) {
       console.log(props.item);
       const asd: addProductToCartInterface = {
-        color: props.productColor,
+        color: props.productColor.color,
         product: props.item.product,
         size: props.activeProductSizeOption,
       };

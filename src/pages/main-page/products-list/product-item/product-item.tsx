@@ -24,11 +24,11 @@ function ProductItem(props: {
   fixedBlockHeightBool?: boolean;
 }) {
   const { product, itemsInCartList } = props;
-  const [productColor, setProductColor] = useState(product.colors[0].color);
+  const [productColor, setProductColor] = useState(product.colors[0]);
   const [activeProductSizeOption, setActiveProductSizeOption] = useState(product ? product.sizes[0] : '');
   const dispatch = useAppDispatch();
   const addProduct: addProductToCartInterface = {
-    color: productColor,
+    color: productColor.color,
     product: props.product,
     size: activeProductSizeOption,
   };
@@ -54,7 +54,7 @@ function ProductItem(props: {
   return (
     <Card sx={{ minWidth: props.blockWidth }}>
       <Link to={`item/${product.id}`}>
-        <StyledCardMedia component="img" height={height.current} image={product.colors[0].url} />
+        <StyledCardMedia component="img" height={height.current} image={productColor.url} />
       </Link>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

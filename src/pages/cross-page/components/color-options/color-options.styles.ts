@@ -13,11 +13,11 @@ export const ColorCircle = styled.div<ColorCircleProps>`
   border-radius: 50%;
   cursor: pointer;
 
-  &:not(.active):hover {
+  &:not(.active-color):hover {
     scale: 1;
   }
 
-  &:not(.active) {
+  &:not(.active-color) {
     scale: 0.7;
   }
 `;

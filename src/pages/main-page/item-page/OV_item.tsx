@@ -9,6 +9,7 @@ import CardActions from '@mui/material/CardActions';
 import SizeOptions from '../../cross-page/components/size-options/size-options';
 import ColorOptions from '../../cross-page/components/color-options/color-options';
 import CartProductQuantityBar from '../../cross-page/cartPopOver/cart-product-quantity-bar';
+import { OverviewItemColor } from './overview-item.styles';
 
 function OvItem(props: {
   productForCart: productForCart;
@@ -21,17 +22,21 @@ function OvItem(props: {
   const { product } = productForCart;
   return (
     <Stack direction="row" justifyContent={'center'} spacing={4}>
-      <Card sx={{ maxWidth: '400px' }}>
+      <Card sx={{ maxWidth: '400px', position: 'relative' }}>
         {/*<OverviewItemImage src={product.image} />*/}
         <CardMedia component="img" height="600" image={productColor.url} alt="Paella dish" />
+        {product.colors.length > 0 && productColor && (
+          <OverviewItemColor>
+            <ColorOptions size={25} product={product} setProductColor={setProductColor} productColor={productColor} />
+          </OverviewItemColor>
+        )}
         <Stack spacing={2}>
           <CardContent>
             <Typography variant="h5">{product.title}</Typography>
             <Typography variant="subtitle1">${product.price} USD</Typography>
             <Typography variant="subtitle2">{product.description}</Typography>
           </CardContent>
-          <CardActions>
-            <Stack spacing={2} direction={'row'}>
+          <CardActions sx={{justifyContent:'space-between'}}>
               <div>
                 <Typography variant="h6">Size</Typography>
                 <SizeOptions
@@ -40,21 +45,8 @@ function OvItem(props: {
                   setActiveProductSizeOption={setActiveProductSizeOption}
                 />
               </div>
-              {
-                product.colors.length > 0 && productColor && (
-                  <div>
-                    <Typography variant="h6">Color</Typography>
-                    <ColorOptions
-                      size={25}
-                      product={product}
-                      setProductColor={setProductColor}
-                      productColor={productColor}
-                    />
-                  </div>
-                )
-              }
-              <div>
-                <Typography variant="h5">Quantity</Typography>
+              <Stack direction={'column'} alignItems={'center'}>
+                <Typography variant='h6'>Quantity</Typography>
                 {
                   <CartProductQuantityBar
                     productColor={productColor}
@@ -62,8 +54,7 @@ function OvItem(props: {
                     activeProductSizeOption={activeProductSizeOption}
                   />
                 }
-              </div>
-            </Stack>
+              </Stack>
           </CardActions>
         </Stack>
       </Card>

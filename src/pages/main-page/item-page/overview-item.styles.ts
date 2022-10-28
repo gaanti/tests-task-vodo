@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
-export const OverviewItemImage = styled.img`
-  height: 80vh;
-  border-radius: 20px;
+export const OverviewItemColor = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
 `;
 
 interface OverviewItemSizeProps {
@@ -30,10 +31,4 @@ export const OverviewItemSize = styled.div<OverviewItemSizeProps>`
     background-color: #d3d3d3;
     color: black;
   }
-`;
-
-export const OverviewItemColor = styled.div`
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
 `;

@@ -48,8 +48,11 @@ function ProductItem(props: {
         <StyledCardMedia component="img" height={height} image={productColor.url} />
       </Link>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" margin={0}>
           {product.title}
+        </Typography>
+        <Typography gutterBottom variant="caption" component="div">
+          ${product.price} USD
         </Typography>
       </CardContent>
       <CardActions

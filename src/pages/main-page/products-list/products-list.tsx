@@ -31,7 +31,7 @@ function ProductsList() {
   const [spacing, setSpacing] = useState(2);
   const [blockHeight, setBlockHeight] = useState(350);
   const [fixedBlockHeightBool, setFixedBlockHeightBool] = useState(false);
-  const [blockWidth, setBlockWidth] = useState(370);
+  const [blockWidth, setBlockWidth] = useState(300);
   const [columnsQty, setColumnsQty] = useState(Math.floor(window.outerWidth / blockWidth));
   const [change, setChange] = useState(false);
   const [sectionTitle, setSectionTitle] = useState('Available products');
@@ -49,7 +49,7 @@ function ProductsList() {
   };
 
   useEffect(() => {
-    setCorrectWidth();
+    // setCorrectWidth();
   }, [spacing, blockWidth, columnsQty, change]);
   const [color, setColor] = React.useState('#000');
 
@@ -111,7 +111,7 @@ function ProductsList() {
                   valueLabelDisplay="auto"
                   step={20}
                   marks
-                  min={200}
+                  min={270}
                   max={400}
                 />
               </Stack>

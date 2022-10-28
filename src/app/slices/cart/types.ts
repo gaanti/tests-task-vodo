@@ -1,6 +1,6 @@
 export interface productForCart {
   quantity: number;
-  color: string;
+  color: colors;
   size: string;
   product: product;
 }

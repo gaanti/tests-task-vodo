@@ -3,17 +3,18 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import React from 'react';
 import { Stack } from '@mui/material';
+import { productForCart } from '../../../app/slices/cart/types';
 
 export default function SimpleDialogDemo(props: {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  deleteItemAction: (id: number) => void;
-  itemId: number;
+  deleteItemAction(item: productForCart): void;
+  item: productForCart;
 }) {
   const { setOpen, open, deleteItemAction } = props;
   const closeDialog = () => props.setOpen(false);
   const approveAction = () => {
-    props.deleteItemAction(props.itemId);
+    props.deleteItemAction(props.item);
     closeDialog();
   };
   const cancelAction = () => {

@@ -11,8 +11,7 @@ import { ColorCircle } from '../../components/color-options/color-options.styles
 
 function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[] }) {
   const { item } = props;
-  const itemImageUrl = item.product.colors.find(color => color.color == item.color)
-  console.log(item.product);
+  const itemImageUrl = item.product.colors.find(color => color.color == item.color.color)
   return (
     <Card sx={{ display: 'flex', width: '600px' }} key={item.product.id}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -24,7 +23,7 @@ function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[]
             <Typography component="div" variant="subtitle2">
               Color:
             </Typography>
-            <ColorCircle color={item.color} />
+            <ColorCircle color={item.color.color} />
           </Stack>
           <Typography component="div" variant="subtitle2">
             Size: {item.size}
@@ -33,11 +32,10 @@ function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[]
             {item.product.description}
           </PopOverCartItemDescription>
         </CardContent>
-        {!props.children && <CartProductQuantityBar item={item} />}
-
+        {!props.children && <CartProductQuantityBar item={item} productColor={item.color} activeProductSizeOption={item.size}/>}
         {props.children && (
           <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
-            <CartProductQuantityBar item={item} />
+            <CartProductQuantityBar activeProductSizeOption={item.size} item={item} productColor={item.color}/>
             <div>{props.children}</div>
           </Stack>
         )}

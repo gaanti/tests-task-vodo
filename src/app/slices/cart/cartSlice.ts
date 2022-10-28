@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
-import { product, productForCart } from './types';
+import { colors, product, productForCart } from './types';
 
 const initialState = {
   cartItems: [] as productForCart[],
@@ -16,7 +16,7 @@ export const cartSlice = createSlice({
         (item) =>
           item.product.id == action.payload.product.id &&
           item.size == action.payload.size &&
-          item.color == action.payload.color,
+          item.color.color == action.payload.color.color,
       );
       if (elementInCartIndex >= 0) {
         state.cartItems[elementInCartIndex].quantity += 1;
@@ -36,8 +36,12 @@ export const cartSlice = createSlice({
         state.cartItems[elementInCartIndex].quantity += 1;
       }
     },
-    minusProductFromCart: (state, action: PayloadAction<number>) => {
-      const elementInCartIndex = state.cartItems.findIndex((item) => item.product.id == action.payload);
+    minusProductFromCart: (state, action: PayloadAction<productForCart>) => {
+      const elementInCartIndex = state.cartItems.findIndex(
+        (item) => item.product.id == action.payload.product.id && item.color.color == action.payload.color.color
+      );
+      console.log(elementInCartIndex >= 0);
+      console.log(elementInCartIndex);
       const existingInCartProduct = state.cartItems[elementInCartIndex];
       if (existingInCartProduct && existingInCartProduct.quantity > 1) {
         existingInCartProduct.quantity -= 1;
@@ -49,7 +53,7 @@ export const cartSlice = createSlice({
 });
 
 export interface addProductToCartInterface {
-  color: string;
+  color: colors;
   size: string;
   product: product;
 }

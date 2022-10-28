@@ -8,60 +8,82 @@ import {
   addProductToCart,
   addProductToCartInterface,
   cartItemsSelector,
-  minusProductFromCart, plusProductInCart,
+  minusProductFromCart,
 } from '../../../app/slices/cart/cartSlice';
 import SimpleDialogDemo from './approveProductRemoval';
 
-export const FindAllProductsWithDifferentParams = (itemToAdd: product) => {
+export const ArrOfItemInCart = (itemToAdd: product) => {
   const allCartItems = useAppSelector(cartItemsSelector);
   if (allCartItems) {
-    const allProducts = allCartItems.filter((elem) => elem.product.id === itemToAdd.id);
-    return allProducts.reduce((previousValue, currentValue) => previousValue + currentValue.quantity, 0);
+    return allCartItems.filter((elem) => elem.product.id === itemToAdd.id);
+  }
+};
+export const TotalQtyOfItemInCart = (itemToAdd: product) => {
+  const arr = ArrOfItemInCart(itemToAdd);
+  if (arr) {
+    return arr.reduce((previousValue, currentValue) => previousValue + currentValue.quantity, 0);
   }
 };
 
 function CartProductQuantityBar(props: {
   item: productForCart;
-  productColor?: colors;
-  activeProductSizeOption?: string;
+  activeProductSizeOption: string;
+  productColor: colors;
 }) {
   const dispatch = useAppDispatch();
   const [dialogOpen, setDialogOpen] = useState(false);
+  const allCartItems = useAppSelector(cartItemsSelector);
+  const currentProductInCart = allCartItems.find((item) => {
+    console.log(item.color.color, props.productColor.color);
+    return item.color.color == props.productColor.color && item.product.id == props.item.product.id;
+  });
+
   const addItem = () => {
-    if (props.productColor && props.activeProductSizeOption) {
-      console.log(props.item);
+    if (currentProductInCart) {
       const asd: addProductToCartInterface = {
-        color: props.productColor.color,
-        product: props.item.product,
+        color: props.productColor,
+        product: currentProductInCart.product,
         size: props.activeProductSizeOption,
       };
       dispatch(addProductToCart(asd));
-    } else dispatch(plusProductInCart(props.item.product));
+
+    } else dispatch(addProductToCart(props.item));
   };
-  const deleteItemAction = (id: number) => {
-    dispatch(minusProductFromCart(id));
+
+
+  const deleteItemAction = (currentProductInCart: productForCart) => {
+    dispatch(minusProductFromCart(currentProductInCart));
   };
-  const removeItem = () => {
-    if (props.item.quantity <= 1) {
-      setDialogOpen(true);
-    } else deleteItemAction(props.item.product.id);
-  };
+  const smth = () => {
+    if (currentProductInCart) {
+      console.log("currentProductInCart exists!");
+      if (currentProductInCart.quantity == 1) {
+        console.log("Quantity is OK");
+        setDialogOpen(true);
+      } else deleteItemAction(currentProductInCart);
+    }
+  }
+
+  // console.log(props.productColor.color);
+  console.log(currentProductInCart);
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
       <IconButton aria-label="previous">
-        <RemoveCircleIcon onClick={removeItem} />
+        <RemoveCircleIcon onClick={smth} />
       </IconButton>
-      <Typography>{props.item.quantity}</Typography>
+      <Typography>{currentProductInCart ? currentProductInCart.quantity : 0}</Typography>
       <IconButton aria-label="next">
         <AddCircleIcon onClick={() => addItem()} />
       </IconButton>
-      <SimpleDialogDemo
-        itemId={props.item.product.id}
-        open={dialogOpen}
-        setOpen={setDialogOpen}
-        deleteItemAction={deleteItemAction}
-      />
+      {currentProductInCart && (
+        <SimpleDialogDemo
+          item={currentProductInCart}
+          open={dialogOpen}
+          setOpen={setDialogOpen}
+          deleteItemAction={deleteItemAction}
+        />
+      )}
     </Box>
   );
 }

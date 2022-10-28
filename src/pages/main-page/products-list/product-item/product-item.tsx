@@ -14,7 +14,7 @@ import './product-item.scss';
 import ColorOptions from '../../../cross-page/components/color-options/color-options';
 import SizeOptions from '../../../cross-page/components/size-options/size-options';
 import { Stack } from '@mui/material';
-import { FindAllProductsWithDifferentParams } from '../../../cross-page/cartPopOver/cart-product-quantity-bar';
+import { TotalQtyOfItemInCart } from '../../../cross-page/cartPopOver/cart-product-quantity-bar';
 
 function ProductItem(props: {
   product: product;
@@ -28,7 +28,7 @@ function ProductItem(props: {
   const [activeProductSizeOption, setActiveProductSizeOption] = useState(product ? product.sizes[0] : '');
   const dispatch = useAppDispatch();
   const addProduct: addProductToCartInterface = {
-    color: productColor.color,
+    color: productColor,
     product: props.product,
     size: activeProductSizeOption,
   };
@@ -49,7 +49,7 @@ function ProductItem(props: {
 
   const tempHeight = props.blockHeight ? props.blockHeight + Math.random() * 50 : 150 + Math.random() * 50;
   const height = useRef(tempHeight);
-  const itemInCartQty = FindAllProductsWithDifferentParams(product);
+  const itemInCartQty = TotalQtyOfItemInCart(product);
 
   return (
     <Card sx={{ minWidth: props.blockWidth }}>

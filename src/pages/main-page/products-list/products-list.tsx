@@ -40,7 +40,7 @@ function ProductsList() {
   };
   const gap = spacing * 8 * 2;
   const setCorrectWidth = () => {
-    setBlockWidth(masonryElemWidth / columnsQty - gap);
+    // setBlockWidth(masonryElemWidth / columnsQty - gap);
   };
   const handleChange = (event: any, func: (arg: any) => void) => {
     // @ts-ignore
@@ -59,10 +59,10 @@ function ProductsList() {
 
   return (
     <Box>
-      <Typography padding={1} variant="h2" color={color}>
+      <Typography padding={1} align={'center'} variant="h2" color={color}>
         {sectionTitle}
       </Typography>
-      <Masonry columns={columnsQty} spacing={spacing} sx={{ marginLeft: '0' }} ref={ref}>
+      <Masonry columns={columnsQty} spacing={spacing} sx={{ marginLeft: '0', alignContent:'center' }} ref={ref}>
         <ConfigureProductsDisplayStylesContainer>
           <Typography variant="h6">Configure appearance</Typography>
           <Stack gap={2} overflow={'scroll'}>
@@ -93,6 +93,25 @@ function ProductsList() {
                 marks
                 min={1}
                 max={4}
+              />
+            </Stack>
+            <Stack direction={'column'}>
+              <Typography variant="caption">Products width</Typography>
+              <Slider
+                aria-label="Temperature"
+                defaultValue={8}
+                value={blockWidth}
+                // @ts-ignore
+                onChange={(e) => {
+                  // @ts-ignore
+                  setBlockWidth(e!.target!.value!);
+                  triggerChange();
+                }}
+                valueLabelDisplay="auto"
+                step={10}
+                marks
+                min={300}
+                max={500}
               />
             </Stack>
             <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>

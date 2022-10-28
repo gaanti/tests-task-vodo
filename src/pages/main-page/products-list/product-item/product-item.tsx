@@ -41,9 +41,9 @@ function ProductItem(props: {
     const randomizedHeightAdjustment = !props.fixedBlockHeightBool ? Math.random() * 50 : 0;
     return defaultHeight + randomizedHeightAdjustment;
   }, [props.blockHeight, props.fixedBlockHeightBool]);
-
+  console.log(props.blockWidth);
   return (
-    <Card sx={{ minWidth: props.blockWidth }}>
+    <Card sx={{ maxWidth: props.blockWidth }}>
       <Link to={`item/${product.id}`}>
         <StyledCardMedia component="img" height={height} image={productColor.url} />
       </Link>

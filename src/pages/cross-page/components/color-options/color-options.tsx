@@ -20,7 +20,7 @@ function ColorOptions(props: {
             return (
               <ColorCircle
                 color={color}
-                className={`${color == props.productColor.color ? 'active' : ''}`}
+                className={`${color == props.productColor.color ? 'active-color' : ''}`}
                 key={color}
                 onClick={() => {
                   props.setProductColor(colors);

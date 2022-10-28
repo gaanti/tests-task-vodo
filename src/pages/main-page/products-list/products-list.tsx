@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import data from '../../../mock-data/mock-data.json';
-import './products-list.scss';
 import {
-  Box, Checkbox,
+  Box,
+  Checkbox,
   FormControl,
   FormControlLabel,
   InputLabel,
@@ -21,20 +21,23 @@ import { cartItemsSelector } from '../../../app/slices/cart/cartSlice';
 import ProductItem from './product-item/product-item';
 import { ConfigureProductsDisplayStylesContainer } from './configureProductsDisplayStyle.styles';
 import { MuiColorInput } from 'mui-color-input';
+import { adaptColumnsQty } from './adaptDataToDevice';
 
 function ProductsList() {
   const productsInstance: product[] = data;
   const itemsInCartList = useAppSelector(cartItemsSelector);
   const ref = useRef(null);
   // @ts-ignore
-  const masonryElemWidth = ref.current ? ref.current.offsetWidth : 0
+  const masonryElemWidth = ref.current ? ref.current.offsetWidth : 0;
   const [spacing, setSpacing] = useState(2);
   const [blockHeight, setBlockHeight] = useState(350);
   const [fixedBlockHeightBool, setFixedBlockHeightBool] = useState(false);
-  const [blockWidth, setBlockWidth] = useState(300);
-  const [columnsQty, setColumnsQty] = useState(Math.floor(window.outerWidth / blockWidth));
+  const [blockWidth, setBlockWidth] = useState(adaptColumnsQty().maxColumnWidth);
+  const maxColumnsQty = adaptColumnsQty().maxColumnsQty;
+  const [columnsQty, setColumnsQty] = useState(2);
   const [change, setChange] = useState(false);
   const [sectionTitle, setSectionTitle] = useState('Available products');
+  const adaptedColumns = adaptColumnsQty();
   const triggerChange = () => {
     setChange((prevState) => !prevState);
   };
@@ -56,13 +59,26 @@ function ProductsList() {
   const handleColorChange = (color: string) => {
     setColor(color);
   };
+  const columnOptions = () => {
+    const initializedArr = Array(adaptColumnsQty().maxColumnsQty).fill(0);
+    return initializedArr.map((_option, index) => {
+      if (index > 1) {
+        return <MenuItem value={index}>{index} cols</MenuItem>;
+      }
+    });
+  };
+
+  useEffect(() => {
+    console.log(window.screen.width / columnsQty);
+    console.log(123123123123);
+  }, []);
 
   return (
     <Box>
       <Typography padding={1} align={'center'} variant="h2" color={color}>
         {sectionTitle}
       </Typography>
-      <Masonry columns={columnsQty} spacing={spacing} sx={{ marginLeft: '0', alignContent:'center' }} ref={ref}>
+      <Masonry columns={columnsQty} spacing={spacing} sx={{ marginLeft: '0', alignContent: 'center' }} ref={ref}>
         <ConfigureProductsDisplayStylesContainer>
           <Typography variant="h6">Configure appearance</Typography>
           <Stack gap={2} overflow={'scroll'}>
@@ -110,12 +126,12 @@ function ProductsList() {
                 valueLabelDisplay="auto"
                 step={10}
                 marks
-                min={300}
-                max={500}
+                min={270}
+                max={window.screen.width / columnsQty - 30}
               />
             </Stack>
             <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
-              <Stack direction={'column'} width={"68%"}>
+              <Stack direction={'column'} width={'68%'}>
                 <Typography variant="caption">Products height</Typography>
                 <Slider
                   aria-label="Temperature"
@@ -140,7 +156,9 @@ function ProductsList() {
                   control={
                     <Checkbox
                       checked={fixedBlockHeightBool}
-                      onChange={() => {setFixedBlockHeightBool(prevState => !prevState)}}
+                      onChange={() => {
+                        setFixedBlockHeightBool((prevState) => !prevState);
+                      }}
                     />
                   }
                 />
@@ -149,14 +167,12 @@ function ProductsList() {
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Columns</InputLabel>
               <Select
-                defaultValue={masonryElemWidth / 3 - gap}
+                defaultValue={columnsQty}
                 value={columnsQty}
                 label="Product width"
                 onChange={(e) => handleChange(e, setColumnsQty)}
               >
-                <MenuItem value={2}>2 cols</MenuItem>
-                <MenuItem value={3}>3 cols</MenuItem>
-                <MenuItem value={4}>4 cols</MenuItem>
+                {columnOptions()}
               </Select>
             </FormControl>
           </Stack>

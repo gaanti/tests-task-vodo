@@ -9,8 +9,6 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { product, productForCart } from '../../../../app/slices/cart/types';
 import { useAppDispatch } from '../../../../app/store';
 import { addProductToCart, addProductToCartInterface } from '../../../../app/slices/cart/cartSlice';
-import { Link } from 'react-router-dom';
-import './product-item.scss';
 import ColorOptions from '../../../cross-page/components/color-options/color-options';
 import SizeOptions from '../../../cross-page/components/size-options/size-options';
 import { Stack } from '@mui/material';
@@ -30,11 +28,11 @@ function ProductItem(props: {
   const [activeProductSizeOption, setActiveProductSizeOption] = useState(product ? product.sizes[0] : '');
   const [openItemModal, setOpenItemModal] = React.useState(false);
   const handleOpenItemModal = () => {
-    console.log("open");
+    console.log('open');
     setOpenItemModal(true);
   };
   const handleCloseItemModal = () => {
-    console.log("close");
+    console.log('close');
     setOpenItemModal(false);
   };
   const itemInCartQty = TotalQtyOfItemInCart(product);
@@ -53,8 +51,9 @@ function ProductItem(props: {
   }, [props.blockHeight, props.fixedBlockHeightBool]);
   console.log(props.blockWidth);
   return (
-    <Card sx={{ maxWidth: props.blockWidth }}>
-        <StyledCardMedia component="img" height={height} image={productColor.url} onClick={() => handleOpenItemModal()}/>
+  // @ts-ignore
+    <Card sx={{ maxWidth: Math.round(props.blockWidth) }}>
+      <StyledCardMedia component="img" height={height} image={productColor.url} onClick={() => handleOpenItemModal()} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" margin={0}>
           {product.title}
@@ -86,7 +85,12 @@ function ProductItem(props: {
           {itemInCartQty && itemInCartQty > 0 ? itemInCartQty : ''}
         </Button>
       </CardActions>
-      <ItemDialog openItemModal={openItemModal} handleOpenItemModal={handleOpenItemModal} handleCloseItemModal={handleCloseItemModal} product={product}/>
+      <ItemDialog
+        openItemModal={openItemModal}
+        handleOpenItemModal={handleOpenItemModal}
+        handleCloseItemModal={handleCloseItemModal}
+        product={product}
+      />
     </Card>
   );
 }

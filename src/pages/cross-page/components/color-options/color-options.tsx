@@ -7,16 +7,16 @@ import { ColorCircle } from './color-options.styles';
 
 function ColorOptions(props: {
   product: product;
-  productColor: colors
+  productColor: colors;
   setProductColor: (color: colors) => void;
   size?: number;
 }) {
   if (props.product.colors.length > 0) {
     return (
       <ThemeProvider theme={darkTheme}>
-        <Paper sx={{ display: 'flex', gap: '6px', p: '7px', backgroundColor: '#c4c4c4' }}>
+        <Paper sx={{ display: 'flex', gap: '6px', p: '7px', backgroundColor: '#c4c4c4', flexWrap: 'wrap' }}>
           {props.product.colors.map((colors) => {
-            const {color} = colors
+            const { color } = colors;
             return (
               <ColorCircle
                 color={color}

@@ -69,6 +69,7 @@ function ProductItem(props: {
           gap: '7px',
           justifyContent: 'space-between',
           alignItems: 'flex-end',
+          flexWrap: 'wrap'
         }}
       >
         <Stack spacing={2}>

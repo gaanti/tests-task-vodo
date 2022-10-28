@@ -30,6 +30,7 @@ export const OverviewItemSize = styled.div<OverviewItemSizeProps>`
   color: white;
   cursor: pointer;
   border-radius: 10px;
+  flex-wrap: wrap;
 
   &:not(.activeSize):hover {
     scale: 1.05;

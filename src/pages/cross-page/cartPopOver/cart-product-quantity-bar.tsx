@@ -34,7 +34,6 @@ function CartProductQuantityBar(props: {
   const [dialogOpen, setDialogOpen] = useState(false);
   const allCartItems = useAppSelector(cartItemsSelector);
   const currentProductInCart = allCartItems.find((item) => {
-    console.log(item.color.color, props.productColor.color);
     return item.color.color == props.productColor.color && item.product.id == props.item.product.id;
   });
 
@@ -56,16 +55,11 @@ function CartProductQuantityBar(props: {
   };
   const smth = () => {
     if (currentProductInCart) {
-      console.log("currentProductInCart exists!");
       if (currentProductInCart.quantity == 1) {
-        console.log("Quantity is OK");
         setDialogOpen(true);
       } else deleteItemAction(currentProductInCart);
     }
   }
-
-  // console.log(props.productColor.color);
-  console.log(currentProductInCart);
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>

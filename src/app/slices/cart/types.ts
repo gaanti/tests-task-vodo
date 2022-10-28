@@ -4,6 +4,7 @@ export interface productForCart {
   size: string;
   product: product;
 }
+
 export interface product {
   id: number;
   title: string;
@@ -12,7 +13,8 @@ export interface product {
   colors: colors[];
   description: string;
 }
+
 export interface colors {
-  color: string,
-  url: string
+  color: string;
+  url: string;
 }

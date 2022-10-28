@@ -38,10 +38,8 @@ export const cartSlice = createSlice({
     },
     minusProductFromCart: (state, action: PayloadAction<productForCart>) => {
       const elementInCartIndex = state.cartItems.findIndex(
-        (item) => item.product.id == action.payload.product.id && item.color.color == action.payload.color.color
+        (item) => item.product.id == action.payload.product.id && item.color.color == action.payload.color.color,
       );
-      console.log(elementInCartIndex >= 0);
-      console.log(elementInCartIndex);
       const existingInCartProduct = state.cartItems[elementInCartIndex];
       if (existingInCartProduct && existingInCartProduct.quantity > 1) {
         existingInCartProduct.quantity -= 1;

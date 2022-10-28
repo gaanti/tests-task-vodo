@@ -23,40 +23,24 @@ function ProductItem(props: {
   blockHeight?: number;
   fixedBlockHeightBool?: boolean;
 }) {
-  const { product, itemsInCartList } = props;
+  const { product } = props;
+  const dispatch = useAppDispatch();
   const [productColor, setProductColor] = useState(product.colors[0]);
   const [activeProductSizeOption, setActiveProductSizeOption] = useState(product ? product.sizes[0] : '');
-  const dispatch = useAppDispatch();
+  const itemInCartQty = TotalQtyOfItemInCart(product);
   const addProduct: addProductToCartInterface = {
     color: productColor,
     product: props.product,
     size: activeProductSizeOption,
   };
-  const addToCart = (product: product) => {
+  const addToCart = () => {
     dispatch(addProductToCart(addProduct));
   };
-  const itemInCart = () => {
-    const elementInCartIndex = itemsInCartList.findIndex((item) => item.product.id == product.id);
-    const ItemInCart = itemsInCartList[elementInCartIndex];
-
-    if (ItemInCart) {
-      const ItemInCartQuantity = ItemInCart.quantity;
-      if (ItemInCartQuantity) {
-        return <span>{ItemInCartQuantity}</span>;
-      }
-    }
-  };
-
-  const tempHeight = useMemo(() => {
+  const height = useMemo(() => {
     const defaultHeight = props.blockHeight ? props.blockHeight : 150;
-    console.log(defaultHeight);
     const randomizedHeightAdjustment = !props.fixedBlockHeightBool ? Math.random() * 50 : 0;
-    console.log(randomizedHeightAdjustment);
     return defaultHeight + randomizedHeightAdjustment;
   }, [props.blockHeight, props.fixedBlockHeightBool]);
-  // const height = useRef(tempHeight);
-  const height = tempHeight;
-  const itemInCartQty = TotalQtyOfItemInCart(product);
 
   return (
     <Card sx={{ minWidth: props.blockWidth }}>
@@ -86,7 +70,7 @@ function ProductItem(props: {
             setActiveProductSizeOption={setActiveProductSizeOption}
           />
         </Stack>
-        <Button size="small" onClick={() => addToCart(product)}>
+        <Button size="small" onClick={() => addToCart()}>
           <AddShoppingCartIcon />
           {itemInCartQty && itemInCartQty > 0 ? itemInCartQty : ''}
         </Button>

@@ -27,7 +27,7 @@ function ProductsList() {
   const itemsInCartList = useAppSelector(cartItemsSelector);
   const ref = useRef(null);
   // @ts-ignore
-  const [masonryElemWidth, setMasonryElemWidth] = useState(ref.current ? ref.current.offsetWidth : 0);
+  const masonryElemWidth = ref.current ? ref.current.offsetWidth : 0
   const [spacing, setSpacing] = useState(2);
   const [blockHeight, setBlockHeight] = useState(350);
   const [fixedBlockHeightBool, setFixedBlockHeightBool] = useState(false);
@@ -49,24 +49,8 @@ function ProductsList() {
   };
 
   useEffect(() => {
-    // @ts-ignore
     setCorrectWidth();
   }, [spacing, blockWidth, columnsQty, change]);
-  // @ts-ignore
-
-  console.log(ref.current && ref.current.offsetWidth);
-  useEffect(() => {
-    // @ts-ignore
-    console.log(blockWidth);
-    // setColumnsQty(Math.floor(masonryElemWidth / blockWidth));
-    const block2 = masonryElemWidth / 2 - gap;
-    console.log('block2 ' + block2);
-    const block3 = masonryElemWidth / 3 - gap;
-    console.log('block3 ' + block3);
-    const block4 = masonryElemWidth / 4 - gap;
-    console.log('block4 ' + block4);
-    // setBlockWidth(Math.floor(block));
-  }, [change]);
   const [color, setColor] = React.useState('#000');
 
   const handleColorChange = (color: string) => {

@@ -28,7 +28,7 @@ function OvItem(props: {
           <CardContent>
             <Typography variant="h5">{product.title}</Typography>
             <Typography variant="subtitle1">${product.price} USD</Typography>
-            <Typography variant="subtitle2">${product.description} USD</Typography>
+            <Typography variant="subtitle2">{product.description}</Typography>
           </CardContent>
           <CardActions>
             <Stack spacing={2} direction={'row'}>
@@ -41,7 +41,6 @@ function OvItem(props: {
                 />
               </div>
               {
-                //checking for exis
                 product.colors.length > 0 && productColor && (
                   <div>
                     <Typography variant="h6">Color</Typography>

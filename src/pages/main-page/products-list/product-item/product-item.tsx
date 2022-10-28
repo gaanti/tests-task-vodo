@@ -15,6 +15,7 @@ import ColorOptions from '../../../cross-page/components/color-options/color-opt
 import SizeOptions from '../../../cross-page/components/size-options/size-options';
 import { Stack } from '@mui/material';
 import { TotalQtyOfItemInCart } from '../../../cross-page/cartPopOver/cart-product-quantity-bar';
+import ItemDialog from '../../item/item-dialog/item-dialog';
 
 function ProductItem(props: {
   product: product;
@@ -27,6 +28,15 @@ function ProductItem(props: {
   const dispatch = useAppDispatch();
   const [productColor, setProductColor] = useState(product.colors[0]);
   const [activeProductSizeOption, setActiveProductSizeOption] = useState(product ? product.sizes[0] : '');
+  const [openItemModal, setOpenItemModal] = React.useState(false);
+  const handleOpenItemModal = () => {
+    console.log("open");
+    setOpenItemModal(true);
+  };
+  const handleCloseItemModal = () => {
+    console.log("close");
+    setOpenItemModal(false);
+  };
   const itemInCartQty = TotalQtyOfItemInCart(product);
   const addProduct: addProductToCartInterface = {
     color: productColor,
@@ -44,9 +54,7 @@ function ProductItem(props: {
   console.log(props.blockWidth);
   return (
     <Card sx={{ maxWidth: props.blockWidth }}>
-      <Link to={`item/${product.id}`}>
-        <StyledCardMedia component="img" height={height} image={productColor.url} />
-      </Link>
+        <StyledCardMedia component="img" height={height} image={productColor.url} onClick={() => handleOpenItemModal()}/>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" margin={0}>
           {product.title}
@@ -78,6 +86,7 @@ function ProductItem(props: {
           {itemInCartQty && itemInCartQty > 0 ? itemInCartQty : ''}
         </Button>
       </CardActions>
+      <ItemDialog openItemModal={openItemModal} handleOpenItemModal={handleOpenItemModal} handleCloseItemModal={handleCloseItemModal} product={product}/>
     </Card>
   );
 }

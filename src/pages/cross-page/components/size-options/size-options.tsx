@@ -1,7 +1,7 @@
 import React from 'react';
 import { product } from '../../../../app/slices/cart/types';
 import { Stack } from '@mui/material';
-import { OverviewItemSize } from '../../../main-page/item-page/overview-item.styles';
+import { OverviewItemSize } from '../../../main-page/item/item-page/overview-item.styles';
 
 function SizeOptions(props: {
   product: product;

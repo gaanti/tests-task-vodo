@@ -13,7 +13,7 @@ function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[]
   const { item } = props;
   const itemImageUrl = item.product.colors.find(color => color.color == item.color.color)
   return (
-    <Card sx={{ display: 'flex', width: '600px' }} key={item.product.id}>
+    <Card sx={{ display: 'flex', maxWidth: '600px', width: 'auto' }} key={item.product.id}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h5">

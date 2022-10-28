@@ -4,7 +4,7 @@ import { cartItemsSelector } from '../../app/slices/cart/cartSlice';
 import CartPopoverItem from '../cross-page/cartPopOver/cartItem/cart-popover-item';
 import {
   Button,
-  Container,
+  Container, Divider,
   Fade,
   Paper,
   Popper,
@@ -46,7 +46,7 @@ function CartPage() {
 
   return (
     <Container maxWidth={'sm'}>
-      <Stack spacing={2} alignItems={'center'}>
+      <Stack spacing={2} alignItems={'center'} >
         {cartItems.map((item) => {
           return (
             <Paper>
@@ -62,17 +62,18 @@ function CartPage() {
                   {({ TransitionProps }) => (
                     <Fade {...TransitionProps} timeout={350}>
                       <Paper>
-                        <Stack direction={'row'}>
+                        <Stack direction={'row'} width={'min-content'}>
                           <Stack>
                             <Typography>Choose the wrapper</Typography>
                             <OrderWrapping />
                           </Stack>
+                          <Divider orientation="vertical" flexItem />
                           <Stack alignItems={'flex-end'}>
                             <Stack direction={'row'} alignItems={'center'}>
                               <Typography>I'd like to get a present</Typography>
-                              <Switch />
                             </Stack>
                             <OrderOptionalPresent />
+                              <Switch />
                           </Stack>
                         </Stack>
                       </Paper>

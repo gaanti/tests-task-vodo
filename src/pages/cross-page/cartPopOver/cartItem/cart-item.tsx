@@ -2,17 +2,16 @@ import React, { useState } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import { PopOverCartItemDescription } from '../../navbar.styles';
-import CartProductQuantityBar from '../cart-product-quantity-bar';
+import ProductQtyBar from '../product-qty-bar';
 import CardMedia from '@mui/material/CardMedia';
 import Card from '@mui/material/Card';
 import { productForCart } from '../../../../app/slices/cart/types';
 import { ColorCircle } from '../../components/color-options/color-options.styles';
-import ProductInCartParameter from './ProductInCartParameter';
-import { CartPopoverImageWrapper, ProductInCartParamWrapper } from './cart-popover-item.styles';
-import ItemDialog from '../../../main-page/item/item-dialog/item-dialog';
-import { GetAddOnsControl } from '../../../hooks/getAddOnsControl';
+import ProductParam from './product-param';
+import { CartPopoverImageWrapper, ProductInCartParamWrapper } from './modal-cart-item.styles';
+import ItemDialog from '../../../main-page/overview-item/item-dialog/item-dialog';
 
-function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[] }) {
+function CartItem(props: { item: productForCart; children?: JSX.Element[] }) {
   const { item } = props;
   const itemImageUrl = item.product.colors.find((color) => color.color == item.color.color);
   const [openItemOverviewModal, setOpenItemOverviewModal] = useState(false);
@@ -37,20 +36,18 @@ function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[]
               </Typography>
               <ColorCircle color={item.color.color} />
             </ProductInCartParamWrapper>
-            <ProductInCartParameter field={`Size: ${item.size}`}></ProductInCartParameter>
-            <ProductInCartParameter field={`Price: $${item.product.price}`}></ProductInCartParameter>
+            <ProductParam field={`Size: ${item.size}`}></ProductParam>
+            <ProductParam field={`Price: $${item.product.price}`}></ProductParam>
           </Stack>
 
           <PopOverCartItemDescription variant="subtitle1" color="text.secondary" component="div">
             {item.product.description}
           </PopOverCartItemDescription>
         </CardContent>
-        {!props.children && (
-          <CartProductQuantityBar item={item} activeProductSizeOption={item.size} />
-        )}
+        {!props.children && <ProductQtyBar item={item} activeProductSizeOption={item.size} />}
         {props.children && (
           <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
-            <CartProductQuantityBar activeProductSizeOption={item.size} item={item} />
+            <ProductQtyBar activeProductSizeOption={item.size} item={item} />
             <div>{props.children}</div>
           </Stack>
         )}
@@ -69,10 +66,10 @@ function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[]
         openItemModal={openItemOverviewModal}
         product={item.product}
         productExistingInCart={item}
-      mode='configure'/>
-      {/*<OverviewItem id={item.product.id} handleCloseItemModal={handleCloseItemModal}/>*/}
+        mode="configure"
+      />
     </Card>
   );
 }
 
-export default CartPopoverItem;
+export default CartItem;

@@ -1,15 +1,14 @@
 import React from 'react';
 import { Paper, Stack, Switch, Typography } from '@mui/material';
-import OrderOptionalPresent from '../../../cart/cart-item/order-optional-present';
-import findindex from 'lodash.findindex';
+import styled from 'styled-components';
 
 function OvItemAddOn(props: {
   imageUrl: string;
   addOnTitle: string;
   handleChange(event: React.ChangeEvent<HTMLInputElement>): void;
-  chosenAddOns: any
+  chosenAddOns: any;
 }) {
-  const {addOnTitle, chosenAddOns, imageUrl, handleChange} = props
+  const { addOnTitle, chosenAddOns, imageUrl, handleChange } = props;
   return (
     <Paper>
       <Stack alignItems={'center'}>
@@ -17,9 +16,21 @@ function OvItemAddOn(props: {
           <Typography>{addOnTitle} </Typography>
         </Stack>
         <OrderOptionalPresent imageUrl={imageUrl} />
-        <Switch name={addOnTitle} checked={chosenAddOns[addOnTitle]} onChange={e => handleChange(e)}/>
+        <Switch name={addOnTitle} checked={chosenAddOns[addOnTitle]} onChange={(e) => handleChange(e)} />
       </Stack>
     </Paper>
+  );
+}
+
+function OrderOptionalPresent(props: { imageUrl: string }) {
+  const OptionalPresent = styled.img`
+    height: 100px;
+    width: 90px;
+  `;
+  return (
+    <div>
+      <OptionalPresent src={props.imageUrl} />
+    </div>
   );
 }
 

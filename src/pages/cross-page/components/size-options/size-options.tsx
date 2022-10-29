@@ -1,8 +1,6 @@
 import React from 'react';
 import { product } from '../../../../app/slices/cart/types';
-import { Stack } from '@mui/material';
-import { OverviewItemSize } from '../../../main-page/item/item-page/overview-item.styles';
-import { SizeOptionsContainer } from './size-options.styles';
+import { OverviewItemSize, SizeOptionsContainer } from './size-options.styles';
 
 function SizeOptions(props: {
   product: product;

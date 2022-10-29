@@ -8,7 +8,6 @@ export const StyledCardMedia: typeof CardMedia = styled(CardMedia)`
   object-position: center 10%;
 `;
 export const StyledMasonryList = styled(Masonry)`
-  margin-left: 0!important;
-  align-content: center!important;
+  margin-left: 0 !important;
+  align-content: center !important;
 `;
-

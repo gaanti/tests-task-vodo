@@ -7,7 +7,6 @@ import '@fontsource/roboto/700.css';
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 import MainPage from './pages/main-page/main-page';
 import Navbar from './pages/cross-page/navbar';
-import OverviewItem from './pages/main-page/item/item-page/overview-item';
 import CartPage from './pages/cart/cart-page';
 
 function App() {

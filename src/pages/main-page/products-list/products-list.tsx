@@ -24,7 +24,6 @@ import ProductItem from './product-item/product-item';
 import { ConfigureProductsDisplayStylesContainer } from './configureProductsDisplayStyle.styles';
 import { MuiColorInput } from 'mui-color-input';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { StyledMasonryList } from './products-list.styles';
 
 function ProductsList() {
   const productsInstance: product[] = data;
@@ -55,8 +54,7 @@ function ProductsList() {
     triggerChange();
   };
 
-  useEffect(() => {
-  }, [spacing, blockWidth, columnsQty, change]);
+  useEffect(() => {}, [spacing, blockWidth, columnsQty, change]);
   const [color, setColor] = React.useState('#000');
 
   const handleColorChange = (color: string) => {
@@ -66,7 +64,11 @@ function ProductsList() {
     const initializedArr = Array(adaptColumnsQty().maxColumnsQty).fill(0);
     return initializedArr.map((_option, index) => {
       if (index > 1) {
-        return <MenuItem key={index} value={index + 1}>{index + 1} cols</MenuItem>;
+        return (
+          <MenuItem key={index} value={index + 1}>
+            {index + 1} cols
+          </MenuItem>
+        );
       }
     });
   };
@@ -174,7 +176,7 @@ function ProductsList() {
                   </Stack>
                 </Stack>
 
-                { columnOptions().length > 1 &&
+                {columnOptions().length > 1 && (
                   <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Columns</InputLabel>
                     <Select
@@ -186,7 +188,7 @@ function ProductsList() {
                       {columnOptions()}
                     </Select>
                   </FormControl>
-                }
+                )}
               </Stack>
             </ConfigureProductsDisplayStylesContainer>
           </AccordionDetails>

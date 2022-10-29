@@ -1,6 +1,6 @@
 import { Modal } from '@mui/material';
 import React from 'react';
-import OverviewItem from '../item-page/overview-item';
+import TRANSITIONAL__OVItem from './TRANSITIONAL__OV-item';
 import { product, productForCart } from '../../../../app/slices/cart/types';
 
 function ItemDialog(props: {
@@ -9,7 +9,7 @@ function ItemDialog(props: {
   handleCloseItemModal(): void;
   product: product;
   productExistingInCart?: productForCart;
-  mode?: 'configure' | 'overview'
+  mode?: 'configure' | 'overview';
 }) {
   return (
     <div>
@@ -20,11 +20,11 @@ function ItemDialog(props: {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <OverviewItem
+        <TRANSITIONAL__OVItem
           handleCloseItemModal={props.handleCloseItemModal}
           product={props.product}
           productExistingInCart={props.productExistingInCart}
-          mode = {props.mode}
+          mode={props.mode}
         />
       </Modal>
     </div>

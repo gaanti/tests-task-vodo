@@ -3,7 +3,7 @@ export interface productForCart {
   color: colors;
   size: string;
   product: product;
-  chosenAddOns: addOns[]
+  chosenAddOns: addOns[];
 }
 
 export interface product {
@@ -13,13 +13,14 @@ export interface product {
   sizes: string[];
   colors: colors[];
   description: string;
-  addOns: addOns[]
+  addOns: addOns[];
 }
 
 export interface colors {
   color: string;
   url: string;
 }
+
 export interface addOns {
   title: string;
   imageUrl: string;

@@ -5,8 +5,9 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { product, productForCart } from '../../../app/slices/cart/types';
 import { useAppDispatch, useAppSelector } from '../../../app/store';
 import { addProductToCart, cartItemsSelector, minusProductFromCart } from '../../../app/slices/cart/cartSlice';
-import SimpleDialogDemo from './approveProductRemoval';
-function CartProductQuantityBar(props: { item: productForCart; activeProductSizeOption: string }) {
+import SimpleDialogDemo from './approve-product-removal';
+
+function ProductQtyBar(props: { item: productForCart; activeProductSizeOption: string }) {
   const { item } = props;
   const dispatch = useAppDispatch();
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -51,5 +52,4 @@ export const TotalQtyOfItemInCart = (itemToAdd: product) => {
   }
 };
 
-export default CartProductQuantityBar;
-
+export default ProductQtyBar;

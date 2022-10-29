@@ -1,18 +1,17 @@
 import React from 'react';
-import { colors, productForCart } from '../../../../app/slices/cart/types';
+import { colors, productForCart } from '../../../../../app/slices/cart/types';
 import { Accordion, AccordionDetails, AccordionSummary, Paper, Stack } from '@mui/material';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
-import SizeOptions from '../../../cross-page/components/size-options/size-options';
-import ColorOptions from '../../../cross-page/components/color-options/color-options';
-import CartProductQuantityBar from '../../../cross-page/cartPopOver/cart-product-quantity-bar';
-import { CloseItem, OverviewItemColor } from './overview-item.styles';
+import SizeOptions from '../../../../cross-page/components/size-options/size-options';
+import ColorOptions from '../../../../cross-page/components/color-options/color-options';
+import ProductQtyBar from '../../../../cross-page/cartPopOver/product-qty-bar';
 import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import OvItemAddOn from './OV-item-addOn';
-import { OV_itemCard } from './OV_item.styles';
+import OvItemAddOn from '../addon/OV-item-addOn';
+import { CloseItem, OV_itemCard, OverviewItemColor } from './OV_item.styles';
 
 function OvItem(props: {
   mode?: 'configure' | 'overview';
@@ -44,14 +43,22 @@ function OvItem(props: {
   const imageHeight =
     props.mode == 'overview' || !props.mode ? window.screen.height : window.screen.height - window.screen.height / 2.5;
   return (
-    <Stack width={'70vw'} maxWidth={380} margin={'auto'} direction="row" justifyContent={'center'} spacing={4} overflow={'scroll'}>
+    <Stack
+      width={'70vw'}
+      maxWidth={380}
+      margin={'auto'}
+      direction="row"
+      justifyContent={'center'}
+      spacing={4}
+      overflow={'scroll'}
+    >
       <OV_itemCard width={imageHeight * 1.5}>
         <CardMedia
           component="img"
           height={imageHeight}
           image={productForCart.color.url}
           alt="Paella dish"
-          sx={{maxHeight: '500px'}}
+          sx={{ maxHeight: '500px' }}
         />
         <OverviewItemColor>
           <ColorOptions
@@ -85,7 +92,7 @@ function OvItem(props: {
               </div>
               <Stack direction={'column'} alignItems={'center'}>
                 <Typography variant="h6">Quantity</Typography>
-                {<CartProductQuantityBar item={productForCart} activeProductSizeOption={activeProductSizeOption} />}
+                {<ProductQtyBar item={productForCart} activeProductSizeOption={activeProductSizeOption} />}
               </Stack>
             </Stack>
             <Accordion sx={{ width: '100%' }}>

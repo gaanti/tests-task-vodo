@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { product, productForCart } from '../../../../app/slices/cart/types';
-import OvItem from './OV_item';
+import OvItem from './item/OV_item';
 import { GetAddOnsControl } from '../../../hooks/getAddOnsControl';
 import { useAppDispatch } from '../../../../app/store';
 import { updateProductInCart } from '../../../../app/slices/cart/cartSlice';
 
-function OverviewItem(props: {
+function TRANSITIONAL__OVItem(props: {
   productExistingInCart?: productForCart;
   product: product;
   handleCloseItemModal(): void;
-  mode?: 'configure' | 'overview'
-
+  mode?: 'configure' | 'overview';
 }) {
   const { product, productExistingInCart } = props;
   const [activeProductColor, setActiveProductColor] = useState(
@@ -80,4 +79,4 @@ function OverviewItem(props: {
   );
 }
 
-export default OverviewItem;
+export default TRANSITIONAL__OVItem;

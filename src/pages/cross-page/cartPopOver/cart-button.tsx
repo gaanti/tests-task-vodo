@@ -5,11 +5,11 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { productForCart } from '../../../app/slices/cart/types';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import { Link } from 'react-router-dom';
-import CartPopoverItem from './cartItem/cart-popover-item';
+import CartItem from './cartItem/cart-item';
 
 export const lightTheme = createTheme({ palette: { mode: 'light' } });
 
-function CartPopover(props: { cartItems: productForCart[] }) {
+function CartButton(props: { cartItems: productForCart[] }) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   let open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -29,10 +29,12 @@ function CartPopover(props: { cartItems: productForCart[] }) {
           </MenuItem>
         </Link>
         {props.cartItems.map((item) => {
-          return <div key={item.product.id}>
-            <CartPopoverItem item={item} />
-            <Divider />
-          </div>;
+          return (
+            <div key={item.product.id}>
+              <CartItem item={item} />
+              <Divider />
+            </div>
+          );
         })}
       </Menu>
       <Button
@@ -58,4 +60,4 @@ function CartPopover(props: { cartItems: productForCart[] }) {
   );
 }
 
-export default CartPopover;
+export default CartButton;

@@ -12,8 +12,8 @@ import { addProductToCart, addProductToCartInterface } from '../../../../app/sli
 import ColorOptions from '../../../cross-page/components/color-options/color-options';
 import SizeOptions from '../../../cross-page/components/size-options/size-options';
 import { Stack, Tooltip } from '@mui/material';
-import { TotalQtyOfItemInCart } from '../../../cross-page/cartPopOver/cart-product-quantity-bar';
-import ItemDialog from '../../item/item-dialog/item-dialog';
+import { TotalQtyOfItemInCart } from '../../../cross-page/cartPopOver/product-qty-bar';
+import ItemDialog from '../../overview-item/item-dialog/item-dialog';
 
 function ProductItem(props: {
   product: product;

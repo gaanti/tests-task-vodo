@@ -1,6 +1,6 @@
 import React from 'react';
 import { darkTheme } from '../../navbar';
-import { Paper, ThemeProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 import { colors, product } from '../../../../app/slices/cart/types';
 import './color-options.scss';
 import { ColorCircle, ColorOptionsWrapper } from './color-options.styles';

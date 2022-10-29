@@ -2,7 +2,7 @@ import React from 'react';
 import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import { WrappingOptionImage } from '../cart-page.styles';
 
-function OrderWrapping() {
+function OrderWrappingOptions() {
   return (
     <FormControl sx={{ p: '5px' }}>
       <RadioGroup
@@ -28,4 +28,4 @@ function OrderWrapping() {
   );
 }
 
-export default OrderWrapping;
+export default OrderWrappingOptions;

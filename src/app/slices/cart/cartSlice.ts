@@ -23,7 +23,7 @@ export const cartSlice = createSlice({
         state.cartItems[elementInCartIndex].quantity += 1;
       } else {
         const productForCart: productForCart = {
-          chosenAddOns: action.payload.chosenAddOns?action.payload.chosenAddOns:[],
+          chosenAddOns: action.payload.chosenAddOns ? action.payload.chosenAddOns : [],
           color: action.payload.color,
           size: action.payload.size,
           quantity: 1,
@@ -50,10 +50,10 @@ export const cartSlice = createSlice({
       }
     },
     updateProductInCart: (state, action: PayloadAction<productForCart>) => {
-      const cartItemWithoutParams = state.cartItems.map(item => item.product)
-      const elementInCartIndex = findindex(cartItemWithoutParams, action.payload.product)
+      const cartItemWithoutParams = state.cartItems.map((item) => item.product);
+      const elementInCartIndex = findindex(cartItemWithoutParams, action.payload.product);
       if (elementInCartIndex >= 0) {
-        state.cartItems[elementInCartIndex] = action.payload
+        state.cartItems[elementInCartIndex] = action.payload;
       }
     },
   },
@@ -63,7 +63,7 @@ export interface addProductToCartInterface {
   color: colors;
   size: string;
   product: product;
-  chosenAddOns: addOns[]
+  chosenAddOns: addOns[];
 }
 
 export const cartItemsSelector = (state: RootState) => state.sliceExample.cartItems;

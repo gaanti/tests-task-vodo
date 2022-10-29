@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { cartItemsSelector } from '../../app/slices/cart/cartSlice';
-import CartPopoverItem from '../cross-page/cartPopOver/cartItem/cart-popover-item';
+import CartItem from '../cross-page/cartPopOver/cartItem/cart-item';
 import {
   Button,
-  Container, Divider,
+  Container,
   Fade,
   Paper,
   Popper,
   PopperPlacementType,
   Stack,
-  Switch,
   TextField,
   TextFieldProps,
   Typography,
@@ -18,8 +17,7 @@ import {
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import OrderWrapping from './cart-item/order-wrapping';
-import OrderOptionalPresent from './cart-item/order-optional-present';
+import OrderWrappingOptions from './cart-item/order-wrapping-options';
 
 function CartPage() {
   const cartItems = useSelector(cartItemsSelector);
@@ -46,11 +44,11 @@ function CartPage() {
 
   return (
     <Container maxWidth={'sm'}>
-      <Stack spacing={2} alignItems={'center'} >
+      <Stack spacing={2} alignItems={'center'}>
         {cartItems.map((item) => {
           return (
             <Paper key={item.product.id}>
-              <CartPopoverItem item={item}>
+              <CartItem item={item}>
                 <Button onClick={handleClick('bottom')}>Configure order</Button>
                 <Popper
                   sx={{ zIndex: '1111111111' }}
@@ -65,14 +63,14 @@ function CartPage() {
                         <Stack direction={'row'} width={'min-content'}>
                           <Stack>
                             <Typography>Choose the wrapper</Typography>
-                            <OrderWrapping />
+                            <OrderWrappingOptions />
                           </Stack>
                         </Stack>
                       </Paper>
                     </Fade>
                   )}
                 </Popper>
-              </CartPopoverItem>
+              </CartItem>
             </Paper>
           );
         })}

@@ -3,7 +3,7 @@ import { AppBar, createTheme, ThemeProvider, Toolbar, Typography } from '@mui/ma
 import { useSelector } from 'react-redux';
 import { cartItemsSelector } from '../../app/slices/cart/cartSlice';
 import './navbar.scss';
-import CartPopover from './cartPopOver/cart-popover';
+import CartButton from './cartPopOver/cart-button';
 import { Link } from 'react-router-dom';
 
 export const darkTheme = createTheme({ palette: { mode: 'dark' } });
@@ -19,7 +19,7 @@ function Navbar() {
               Voodoo test-task
             </Typography>
           </Link>
-          {cartItems.length > 0 && <CartPopover cartItems={cartItems} />}
+          {cartItems.length > 0 && <CartButton cartItems={cartItems} />}
         </Toolbar>
       </AppBar>
     </ThemeProvider>

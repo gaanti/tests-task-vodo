@@ -44,13 +44,14 @@ function OvItem(props: {
   const imageHeight =
     props.mode == 'overview' || !props.mode ? window.screen.height : window.screen.height - window.screen.height / 2.5;
   return (
-    <Stack width={'70vw'} maxWidth={400} margin={'auto'} direction="row" justifyContent={'center'} spacing={4} overflow={'scroll'}>
+    <Stack width={'70vw'} maxWidth={380} margin={'auto'} direction="row" justifyContent={'center'} spacing={4} overflow={'scroll'}>
       <OV_itemCard width={imageHeight * 1.5}>
         <CardMedia
           component="img"
           height={imageHeight}
           image={productForCart.color.url}
           alt="Paella dish"
+          sx={{maxHeight: '500px'}}
         />
         <OverviewItemColor>
           <ColorOptions

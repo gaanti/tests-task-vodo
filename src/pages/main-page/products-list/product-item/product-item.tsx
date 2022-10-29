@@ -59,7 +59,7 @@ function ProductItem(props: {
         onClick={() => handleOpenItemModal()}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div" margin={0}>
+        <Typography gutterBottom variant="h5" component="div" margin={0} height={props.fixedBlockHeightBool?64:'unset'}>
           {product.title}
         </Typography>
         <Typography gutterBottom variant="caption" component="div">

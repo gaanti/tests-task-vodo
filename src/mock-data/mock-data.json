@@ -167,7 +167,7 @@
   },
   {
     "id": 9,
-    "title": "White naked BODYSOUL",
+    "title": "Naked BODYSOUL",
     "price": 275.00,
     "sizes": [
       "XS",
@@ -185,5 +185,72 @@
       }
     ],
     "description": "Modern fashion offers quite distinctive items that are far from the classic options. This designer one-piece black swimsuit boasts originality. At the same time its style is universal for girls with different body types. The highlight of the item are long sleeves and an upright collar. The black layer is ornamented by smooth arrows and white lettering as well as rounded cutouts in the waist area through which a blue insert is visible. Intertwined layers create a play of colors and shapes. It is worth noting the one-piece style, which is extremely trendy as of now. Our online store offers a black swimsuit that provides comfort and expressiveness."
+  },
+  {
+    "id": 10,
+    "title": "AURA jeans",
+    "price": 300.00,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      {
+        "color": "#ffe9cb",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2232_beige_1.jpg?v=1652956728"
+      }
+    ],
+    "description": "Jeans came into fashion several decades ago and never left it. The popularity of the style owes to its versatility and high level of comfort. Beige jeans for women from the new collection differ significantly from the standard options. The inner and outer parts, as well as the belt, are made in white with a slight fringe around the edges. Beige panels in the middle resemble stretch leggings. The jeans are secured with a zipper at the front. There are classic pockets on the back. Our online store offers beige jeans for women, which can be combined with different top options. You can choose a beige bodysuit from the new collection to put together a two-piece suit."
+  },
+  {
+    "id": 11,
+    "title": "01 RDNT pants",
+    "price": 200.00,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "color": "#00a2e5",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2229_blue_1.jpg?v=1652956763"
+      },
+      {
+        "color": "#00ff00",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2229_green_1.jpg?v=1652956757"
+      },
+      {
+        "color": "#000",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2229_black_1.jpg?v=1652956753"
+      }
+    ],
+    "description": "A few years ago, sweatpants were associated only with sports and indoor clothing. Now the style has gone beyond this framework and has become the basis of many different styles. Using the classic monochromatic options, the designers have created these men's blue sweatpants. The peculiarity of the item lies in the textured color which resembles crystal clear sea water. Any look, an everyday life or a party one will get a bright element and attract looks. In our online store of designer clothes, you can buy men's sports pants, as well as choose from an assortment of hoodies or sweatshirts to create a stylish suit."
+  },
+  {
+    "id": 12,
+    "title": "T-shirt I am who I am",
+    "price": 245.00,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      {
+        "color": "#fff",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2210_black_5_ce4d2112-d38f-4062-b810-808c7801c26e.jpg?v=1652957083"
+      },
+      {
+        "color": "#000",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2210_black_1.jpg?v=1652957070"
+      }
+    ],
+    "description": "A few years ago, sweatpants were associated only with sports and indoor clothing. Now the style has gone beyond this framework and has become the basis of many different styles. Using the classic monochromatic options, the designers have created these men's blue sweatpants. The peculiarity of the item lies in the textured color which resembles crystal clear sea water. Any look, an everyday life or a party one will get a bright element and attract looks. In our online store of designer clothes, you can buy men's sports pants, as well as choose from an assortment of hoodies or sweatshirts to create a stylish suit."
   }
 ]

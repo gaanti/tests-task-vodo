@@ -80,8 +80,8 @@ function ProductsList() {
         </Typography>
       </Stack>
 
-      <Masonry columns={columnsQty} spacing={spacing} ref={ref} >
-        <Accordion sx={{maxWidth:blockWidth}}>
+      <Masonry columns={columnsQty} spacing={spacing} ref={ref}>
+        <Accordion sx={{ maxWidth: blockWidth }}>
           <AccordionSummary expandIcon={<SettingsIcon />} aria-controls="panel1a-content" id="panel1a-header">
             <Typography>Configure appearance</Typography>
           </AccordionSummary>
@@ -135,7 +135,7 @@ function ProductsList() {
                       step={10}
                       marks
                       min={270}
-                      max={window.screen.width / Number(columnsQty) -30}
+                      max={window.screen.width / Number(columnsQty) - 30}
                     />
                   </Stack>
                 )}
@@ -174,17 +174,20 @@ function ProductsList() {
                     />
                   </Stack>
                 </Stack>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Columns</InputLabel>
-                  <Select
-                    defaultValue={columnsQty}
-                    value={columnsQty}
-                    label="Product width"
-                    onChange={(e) => handleChange(e, setColumnsQty)}
-                  >
-                    {columnOptions()}
-                  </Select>
-                </FormControl>
+
+                { columnOptions().length > 1 &&
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Columns</InputLabel>
+                    <Select
+                      defaultValue={columnsQty}
+                      value={columnsQty}
+                      label="Product width"
+                      onChange={(e) => handleChange(e, setColumnsQty)}
+                    >
+                      {columnOptions()}
+                    </Select>
+                  </FormControl>
+                }
               </Stack>
             </ConfigureProductsDisplayStylesContainer>
           </AccordionDetails>

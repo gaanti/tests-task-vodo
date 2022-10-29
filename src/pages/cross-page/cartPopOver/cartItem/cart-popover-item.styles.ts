@@ -8,3 +8,6 @@ export const ProductInCartParamWrapper = styled(Paper)`
   padding: 0 4px;
   background-color: #c4c4c4 !important;
 `;
+export const CartPopoverImageWrapper = styled.div`
+  cursor: pointer;
+`;

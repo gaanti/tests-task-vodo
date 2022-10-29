@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { colors, productForCart } from '../../../../app/slices/cart/types';
 import { Paper, Stack } from '@mui/material';
 import Card from '@mui/material/Card';
@@ -11,6 +11,7 @@ import ColorOptions from '../../../cross-page/components/color-options/color-opt
 import CartProductQuantityBar from '../../../cross-page/cartPopOver/cart-product-quantity-bar';
 import { CloseItem, OverviewItemColor } from './overview-item.styles';
 import CloseIcon from '@mui/icons-material/Close';
+import OverviewItem from './overview-item';
 
 function OvItem(props: {
   productForCart: productForCart;
@@ -22,6 +23,7 @@ function OvItem(props: {
 }) {
   const { productForCart, productColor, setProductColor, activeProductSizeOption, setActiveProductSizeOption } = props;
   const { product } = productForCart;
+
   return (
     <Stack
       width={'fit-content'}
@@ -32,8 +34,7 @@ function OvItem(props: {
       overflow={'scroll'}
     >
       <Card sx={{ maxWidth: '400px', position: 'relative', overflow: 'scroll' }}>
-        {/*<OverviewItemImage src={product.image} />*/}
-        <CardMedia component="img" height="600" image={productColor.url} alt="Paella dish" />
+        <CardMedia component="img" height="600" image={productColor.url} alt="Paella dish"/>
         {product.colors.length > 0 && productColor && (
           <OverviewItemColor>
             <ColorOptions size={25} product={product} setProductColor={setProductColor} productColor={productColor} />

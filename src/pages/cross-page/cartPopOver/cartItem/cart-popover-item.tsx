@@ -1,19 +1,26 @@
-import React from 'react';
-import { Box, Paper, Stack, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Stack, Typography } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import { PopOverCartItemDescription } from '../../navbar.styles';
 import CartProductQuantityBar from '../cart-product-quantity-bar';
 import CardMedia from '@mui/material/CardMedia';
 import Card from '@mui/material/Card';
 import { productForCart } from '../../../../app/slices/cart/types';
-import { Link } from 'react-router-dom';
 import { ColorCircle } from '../../components/color-options/color-options.styles';
 import ProductInCartParameter from './ProductInCartParameter';
-import { ProductInCartParamWrapper } from './cart-popover-item.styles';
+import { CartPopoverImageWrapper, ProductInCartParamWrapper } from './cart-popover-item.styles';
+import ItemDialog from '../../../main-page/item/item-dialog/item-dialog';
 
 function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[] }) {
   const { item } = props;
   const itemImageUrl = item.product.colors.find((color) => color.color == item.color.color);
+  const [openItemOverviewModal, setOpenItemOverviewModal] = useState(true);
+  const handleCloseItemModal = () => {
+    setOpenItemOverviewModal(false);
+  };
+  const handleOpenItemModal = () => {
+    setOpenItemOverviewModal(true);
+  };
   return (
     <Card sx={{ display: 'flex', maxWidth: '600px', width: 'auto' }} key={item.product.id}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -46,9 +53,21 @@ function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[]
           </Stack>
         )}
       </Box>
-      <div>
-        <CardMedia component="img" sx={{ width: 151, height: '100%' }} image={itemImageUrl!.url} alt="Added to cart item" />
-      </div>
+      <CartPopoverImageWrapper onClick={handleOpenItemModal}>
+        <CardMedia
+          component="img"
+          sx={{ width: 151, height: '100%' }}
+          image={itemImageUrl!.url}
+          alt="Added to cart item"
+        />
+      </CartPopoverImageWrapper>
+      <ItemDialog
+        handleCloseItemModal={handleCloseItemModal}
+        handleOpenItemModal={handleOpenItemModal}
+        openItemModal={openItemOverviewModal}
+        product={item.product}
+      />
+      {/*<OverviewItem id={item.product.id} handleCloseItemModal={handleCloseItemModal}/>*/}
     </Card>
   );
 }

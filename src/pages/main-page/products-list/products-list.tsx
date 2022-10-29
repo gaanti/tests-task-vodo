@@ -66,7 +66,7 @@ function ProductsList() {
     const initializedArr = Array(adaptColumnsQty().maxColumnsQty).fill(0);
     return initializedArr.map((_option, index) => {
       if (index > 1) {
-        return <MenuItem value={index + 1}>{index + 1} cols</MenuItem>;
+        return <MenuItem key={index} value={index + 1}>{index + 1} cols</MenuItem>;
       }
     });
   };

@@ -49,7 +49,7 @@ function CartPage() {
       <Stack spacing={2} alignItems={'center'} >
         {cartItems.map((item) => {
           return (
-            <Paper>
+            <Paper key={item.product.id}>
               <CartPopoverItem item={item}>
                 <Button onClick={handleClick('bottom')}>Configure order</Button>
                 <Popper

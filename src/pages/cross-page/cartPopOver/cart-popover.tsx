@@ -18,7 +18,6 @@ function CartPopover(props: { cartItems: productForCart[] }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const callApproving = () => {};
 
   return (
     <ThemeProvider theme={lightTheme}>
@@ -30,7 +29,7 @@ function CartPopover(props: { cartItems: productForCart[] }) {
           </MenuItem>
         </Link>
         {props.cartItems.map((item) => {
-          return <div>
+          return <div key={item.product.id}>
             <CartPopoverItem item={item} />
             <Divider />
           </div>;

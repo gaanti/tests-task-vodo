@@ -14,7 +14,7 @@ import ItemDialog from '../../../main-page/item/item-dialog/item-dialog';
 function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[] }) {
   const { item } = props;
   const itemImageUrl = item.product.colors.find((color) => color.color == item.color.color);
-  const [openItemOverviewModal, setOpenItemOverviewModal] = useState(true);
+  const [openItemOverviewModal, setOpenItemOverviewModal] = useState(false);
   const handleCloseItemModal = () => {
     setOpenItemOverviewModal(false);
   };

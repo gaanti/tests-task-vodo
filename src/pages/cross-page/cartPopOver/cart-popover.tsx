@@ -1,5 +1,5 @@
 import React from 'react';
-import { createTheme, Menu, MenuItem, Paper, ThemeProvider } from '@mui/material';
+import { createTheme, Divider, Menu, MenuItem, Paper, ThemeProvider } from '@mui/material';
 import Button from '@mui/material/Button';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { productForCart } from '../../../app/slices/cart/types';
@@ -30,7 +30,10 @@ function CartPopover(props: { cartItems: productForCart[] }) {
           </MenuItem>
         </Link>
         {props.cartItems.map((item) => {
-          return <CartPopoverItem item={item} />;
+          return <div>
+            <CartPopoverItem item={item} />
+            <Divider />
+          </div>;
         })}
       </Menu>
       <Button

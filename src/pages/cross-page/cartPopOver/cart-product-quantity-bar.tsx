@@ -62,7 +62,7 @@ function CartProductQuantityBar(props: {
   }
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <IconButton aria-label="previous">
         <RemoveCircleIcon onClick={smth} />
       </IconButton>

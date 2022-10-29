@@ -164,5 +164,26 @@
       }
     ],
     "description": "There are often times when you need to put something warmer over a shirt, T-shirt or a golf. A men's white zip-up hoodie will accomplish this task just fine. The garment fits well with different styles and provides comfort. The jacket is made in a classic style - with a drawstring hood, slanting pockets with zippers and elastic bands on the sleeves and belt. A decorative heart-shaped cutout adorns the front and defines the item as part of the new brand collection. The sweatshirt fits well with both athletic and casual looks. Our online store offers a men's white hoodie for total comfort, warmth and stylish appearance."
+  },
+  {
+    "id": 9,
+    "title": "White naked BODYSOUL",
+    "price": 275.00,
+    "sizes": [
+      "XS",
+      "S",
+      "M"
+    ],
+    "colors": [
+      {
+        "color": "#fff",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2202_white_1.jpg?v=1652957241"
+      },
+      {
+        "color": "#000",
+        "url": "https://cdn.shopify.com/s/files/1/0641/2917/1696/products/2201_black_1_890e80fb-9932-43bd-898d-46740f7898de.jpg?v=1652957248"
+      }
+    ],
+    "description": "Modern fashion offers quite distinctive items that are far from the classic options. This designer one-piece black swimsuit boasts originality. At the same time its style is universal for girls with different body types. The highlight of the item are long sleeves and an upright collar. The black layer is ornamented by smooth arrows and white lettering as well as rounded cutouts in the waist area through which a blue insert is visible. Intertwined layers create a play of colors and shapes. It is worth noting the one-piece style, which is extremely trendy as of now. Our online store offers a black swimsuit that provides comfort and expressiveness."
   }
 ]

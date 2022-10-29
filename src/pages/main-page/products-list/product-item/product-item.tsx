@@ -11,7 +11,7 @@ import { useAppDispatch } from '../../../../app/store';
 import { addProductToCart, addProductToCartInterface } from '../../../../app/slices/cart/cartSlice';
 import ColorOptions from '../../../cross-page/components/color-options/color-options';
 import SizeOptions from '../../../cross-page/components/size-options/size-options';
-import { Stack } from '@mui/material';
+import { Stack, Tooltip } from '@mui/material';
 import { TotalQtyOfItemInCart } from '../../../cross-page/cartPopOver/cart-product-quantity-bar';
 import ItemDialog from '../../item/item-dialog/item-dialog';
 
@@ -49,10 +49,15 @@ function ProductItem(props: {
   }, [props.blockHeight, props.fixedBlockHeightBool]);
   console.log(props.blockWidth);
   return (
-  // @ts-ignore
-  //   <Card sx={{ maxWidth: Math.round(props.blockWidth) }}>
-    <Card sx={{ maxWidth: Math.floor(props.blockWidth) }}>
-      <StyledCardMedia component="img" height={Math.round(height) } image={productColor.url} onClick={() => handleOpenItemModal()} />
+    // @ts-ignore
+    //   <Card sx={{ maxWidth: Math.round(props.blockWidth) }}>
+    <Card sx={{ maxWidth: Math.floor(props.blockWidth), position: 'relative' }}>
+      <StyledCardMedia
+        component="img"
+        height={Math.round(height)}
+        image={productColor.url}
+        onClick={() => handleOpenItemModal()}
+      />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" margin={0}>
           {product.title}
@@ -60,6 +65,11 @@ function ProductItem(props: {
         <Typography gutterBottom variant="caption" component="div">
           ${product.price} USD
         </Typography>
+        <SizeOptions
+          product={product}
+          activeProductSizeOption={activeProductSizeOption}
+          setActiveProductSizeOption={setActiveProductSizeOption}
+        />
       </CardContent>
       <CardActions
         sx={{
@@ -68,23 +78,25 @@ function ProductItem(props: {
           display: 'flex',
           gap: '7px',
           justifyContent: 'space-between',
+          width: '100%',
           alignItems: 'flex-end',
-          flexWrap: 'wrap'
+          flexWrap: 'wrap',
+          position: 'absolute',
+          top: 0,
+          left: 0,
         }}
       >
         <Stack spacing={2}>
           <ColorOptions product={product} setProductColor={setProductColor} productColor={productColor} />
-          <SizeOptions
-            product={product}
-            activeProductSizeOption={activeProductSizeOption}
-            setActiveProductSizeOption={setActiveProductSizeOption}
-          />
         </Stack>
-        <Button size="small" onClick={() => addToCart()}>
-          <AddShoppingCartIcon />
-          {itemInCartQty && itemInCartQty > 0 ? itemInCartQty : ''}
-        </Button>
+        <Tooltip title="Add to cart">
+          <Button size="small" onClick={() => addToCart()}>
+            <AddShoppingCartIcon />
+            {itemInCartQty && itemInCartQty > 0 ? itemInCartQty : ''}
+          </Button>
+        </Tooltip>
       </CardActions>
+
       <ItemDialog
         openItemModal={openItemModal}
         handleOpenItemModal={handleOpenItemModal}

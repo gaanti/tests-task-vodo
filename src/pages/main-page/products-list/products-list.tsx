@@ -24,6 +24,7 @@ import ProductItem from './product-item/product-item';
 import { ConfigureProductsDisplayStylesContainer } from './configureProductsDisplayStyle.styles';
 import { MuiColorInput } from 'mui-color-input';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { StyledMasonryList } from './products-list.styles';
 
 function ProductsList() {
   const productsInstance: product[] = data;
@@ -79,15 +80,15 @@ function ProductsList() {
         </Typography>
       </Stack>
 
-      <Masonry columns={columnsQty} spacing={spacing} sx={{ marginLeft: '0', alignContent: 'center' }} ref={ref}>
-        <Accordion>
+      <Masonry columns={columnsQty} spacing={spacing} ref={ref} >
+        <Accordion sx={{maxWidth:blockWidth}}>
           <AccordionSummary expandIcon={<SettingsIcon />} aria-controls="panel1a-content" id="panel1a-header">
             <Typography>Configure appearance</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <ConfigureProductsDisplayStylesContainer>
-              <Stack gap={2} overflow={'scroll'}>
-                <Stack direction={'row'}>
+              <Stack gap={2}>
+                <Stack direction={'column'}>
                   <Stack direction={'column'}>
                     <Typography variant="caption">Section title</Typography>
                     <TextField value={sectionTitle} onChange={(e) => setSectionTitle(e.target.value)} />
@@ -138,7 +139,7 @@ function ProductsList() {
                     />
                   </Stack>
                 )}
-                <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
+                <Stack direction={'column'} alignItems={'center'} justifyContent={'space-between'}>
                   <Stack direction={'column'} width={'68%'}>
                     <Typography variant="caption">Products height</Typography>
                     <Slider

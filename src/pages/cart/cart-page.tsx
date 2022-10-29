@@ -67,14 +67,6 @@ function CartPage() {
                             <Typography>Choose the wrapper</Typography>
                             <OrderWrapping />
                           </Stack>
-                          <Divider orientation="vertical" flexItem />
-                          <Stack alignItems={'flex-end'}>
-                            <Stack direction={'row'} alignItems={'center'}>
-                              <Typography>I'd like to get a present</Typography>
-                            </Stack>
-                            <OrderOptionalPresent />
-                              <Switch />
-                          </Stack>
                         </Stack>
                       </Paper>
                     </Fade>

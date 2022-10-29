@@ -22,6 +22,7 @@
     "@types/react-dom": "^18.0.2",
     "@types/react-router-dom": "^5.3.3",
     "dayjs": "^1.11.6",
+    "lodash.findindex": "^4.6.0",
     "moment": "^2.29.4",
     "mui-color-input": "^1.0.2",
     "normalize.css": "^8.0.1",
@@ -61,6 +62,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash.findindex": "^4.6.7",
     "@types/node-sass": "^4.11.3",
     "@types/styled-components": "^5.1.26",
     "prettier": "2.7.1"

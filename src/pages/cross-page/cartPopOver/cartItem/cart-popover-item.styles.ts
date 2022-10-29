@@ -6,7 +6,7 @@ export const ProductInCartParamWrapper = styled(Paper)`
   align-items: center;
   flex-direction: row;
   padding: 0 4px;
-  background-color: #c4c4c4 !important;
+  background-color: #f0f0f0 !important;
 `;
 export const CartPopoverImageWrapper = styled.div`
   cursor: pointer;

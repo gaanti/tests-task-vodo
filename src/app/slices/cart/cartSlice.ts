@@ -1,7 +1,8 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
-import { colors, product, productForCart } from './types';
+import { addOns, colors, product, productForCart } from './types';
+import findindex from 'lodash.findindex';
 
 const initialState = {
   cartItems: [] as productForCart[],
@@ -22,6 +23,7 @@ export const cartSlice = createSlice({
         state.cartItems[elementInCartIndex].quantity += 1;
       } else {
         const productForCart: productForCart = {
+          chosenAddOns: action.payload.chosenAddOns?action.payload.chosenAddOns:[],
           color: action.payload.color,
           size: action.payload.size,
           quantity: 1,
@@ -47,6 +49,13 @@ export const cartSlice = createSlice({
         state.cartItems.splice(elementInCartIndex, 1);
       }
     },
+    updateProductInCart: (state, action: PayloadAction<productForCart>) => {
+      const cartItemWithoutParams = state.cartItems.map(item => item.product)
+      const elementInCartIndex = findindex(cartItemWithoutParams, action.payload.product)
+      if (elementInCartIndex >= 0) {
+        state.cartItems[elementInCartIndex] = action.payload
+      }
+    },
   },
 });
 
@@ -54,10 +63,11 @@ export interface addProductToCartInterface {
   color: colors;
   size: string;
   product: product;
+  chosenAddOns: addOns[]
 }
 
 export const cartItemsSelector = (state: RootState) => state.sliceExample.cartItems;
 
-export const { addProductToCart, minusProductFromCart, plusProductInCart } = cartSlice.actions;
+export const { addProductToCart, minusProductFromCart, plusProductInCart, updateProductInCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

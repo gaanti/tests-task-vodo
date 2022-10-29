@@ -10,6 +10,7 @@ import { ColorCircle } from '../../components/color-options/color-options.styles
 import ProductInCartParameter from './ProductInCartParameter';
 import { CartPopoverImageWrapper, ProductInCartParamWrapper } from './cart-popover-item.styles';
 import ItemDialog from '../../../main-page/item/item-dialog/item-dialog';
+import { GetAddOnsControl } from '../../../hooks/getAddOnsControl';
 
 function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[] }) {
   const { item } = props;
@@ -21,6 +22,7 @@ function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[]
   const handleOpenItemModal = () => {
     setOpenItemOverviewModal(true);
   };
+
   return (
     <Card sx={{ display: 'flex', maxWidth: '600px', width: 'auto' }} key={item.product.id}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -44,11 +46,11 @@ function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[]
           </PopOverCartItemDescription>
         </CardContent>
         {!props.children && (
-          <CartProductQuantityBar item={item} productColor={item.color} activeProductSizeOption={item.size} />
+          <CartProductQuantityBar item={item} activeProductSizeOption={item.size} />
         )}
         {props.children && (
           <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
-            <CartProductQuantityBar activeProductSizeOption={item.size} item={item} productColor={item.color} />
+            <CartProductQuantityBar activeProductSizeOption={item.size} item={item} />
             <div>{props.children}</div>
           </Stack>
         )}
@@ -66,7 +68,8 @@ function CartPopoverItem(props: { item: productForCart; children?: JSX.Element[]
         handleOpenItemModal={handleOpenItemModal}
         openItemModal={openItemOverviewModal}
         product={item.product}
-      />
+        productExistingInCart={item}
+      mode='configure'/>
       {/*<OverviewItem id={item.product.id} handleCloseItemModal={handleCloseItemModal}/>*/}
     </Card>
   );

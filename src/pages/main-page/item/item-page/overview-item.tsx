@@ -1,42 +1,83 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { product, productForCart } from '../../../../app/slices/cart/types';
-import data from '../../../../mock-data/mock-data.json';
-import { useAppSelector } from '../../../../app/store';
-import { cartItemsSelector } from '../../../../app/slices/cart/cartSlice';
 import OvItem from './OV_item';
+import { GetAddOnsControl } from '../../../hooks/getAddOnsControl';
+import { useAppDispatch } from '../../../../app/store';
+import { updateProductInCart } from '../../../../app/slices/cart/cartSlice';
 
-function OverviewItem(props:{id?:number, handleCloseItemModal(): void;}) {
-  const { itemId } = useParams();
-  const productsInstance: product[] = data;
-  const NumberIdeaId = Number(itemId ? itemId : props.id);
-  const product = productsInstance.find((product) => product.id === NumberIdeaId);
-  const [productColor, setProductColor] = useState(product && product.colors[0]);
-  const [activeProductSizeOption, setActiveProductSizeOption] = useState(product ? product.sizes[0] : '');
+function OverviewItem(props: {
+  productExistingInCart?: productForCart;
+  product: product;
+  handleCloseItemModal(): void;
+  mode?: 'configure' | 'overview'
 
-  const itemsInCartList = useAppSelector(cartItemsSelector);
-  const elementInCartIndex = itemsInCartList.findIndex((item) => item.product.id == product!.id);
-  const ItemInCart = itemsInCartList[elementInCartIndex];
+}) {
+  const { product, productExistingInCart } = props;
+  const [activeProductColor, setActiveProductColor] = useState(
+    productExistingInCart ? productExistingInCart.color : product.colors[0],
+  );
+  const [activeProductSizeOption, setActiveProductSizeOption] = useState(
+    productExistingInCart ? productExistingInCart.size : product.sizes[0],
+  );
+  const [chosenAddOns, handleAddOnChang] = GetAddOnsControl(
+    productExistingInCart ? productExistingInCart.product : product,
+    productExistingInCart?.chosenAddOns,
+  );
+  const dispatch = useAppDispatch();
 
-  if ((itemId || props.id) && !isNaN(NumberIdeaId) && product && productColor) {
-    const productForCar: productForCart = {
-      size: activeProductSizeOption,
-      color: productColor,
-      product: product,
-      quantity: 0,
-    };
+  const handleAddOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleAddOnChang(event);
+  };
+  useEffect(() => {
+    if (productExistingInCart) {
+      const productToChange: productForCart = {
+        chosenAddOns: chosenAddOns,
+        color: activeProductColor,
+        product: productExistingInCart.product,
+        quantity: productExistingInCart.quantity,
+        size: activeProductSizeOption,
+      };
+      dispatch(updateProductInCart(productToChange));
+    }
+  }, [chosenAddOns, activeProductSizeOption, activeProductColor]);
+
+  console.log('Chosen addOns', chosenAddOns);
+  if (productExistingInCart) {
     return (
       <OvItem
-        handleCloseItemModal={props.handleCloseItemModal}
-        productColor={productColor}
-        setProductColor={setProductColor}
+        mode={props.mode}
+        activeProductColor={activeProductColor}
+        setActiveProductColor={setActiveProductColor}
         activeProductSizeOption={activeProductSizeOption}
         setActiveProductSizeOption={setActiveProductSizeOption}
-        productForCart={productForCar}
+        productForCart={productExistingInCart}
+        chosenAddOns={chosenAddOns}
+        handleCloseItemModal={props.handleCloseItemModal}
+        handleAddOnChange={handleAddOnChange}
       />
     );
   }
-  return <div>asd</div>;
+  const fakeCartItem: productForCart = {
+    chosenAddOns: chosenAddOns,
+    color: product.colors[0],
+    product: product,
+    quantity: 0,
+    size: product.sizes[0],
+  };
+
+  return (
+    <OvItem
+      mode={props.mode}
+      activeProductColor={activeProductColor}
+      setActiveProductColor={setActiveProductColor}
+      activeProductSizeOption={activeProductSizeOption}
+      setActiveProductSizeOption={setActiveProductSizeOption}
+      productForCart={fakeCartItem}
+      chosenAddOns={fakeCartItem.chosenAddOns}
+      handleCloseItemModal={props.handleCloseItemModal}
+      handleAddOnChange={handleAddOnChange}
+    />
+  );
 }
 
 export default OverviewItem;

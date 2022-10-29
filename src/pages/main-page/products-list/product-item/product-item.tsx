@@ -35,6 +35,7 @@ function ProductItem(props: {
   };
   const itemInCartQty = TotalQtyOfItemInCart(product);
   const addProduct: addProductToCartInterface = {
+    chosenAddOns: [],
     color: productColor,
     product: props.product,
     size: activeProductSizeOption,
@@ -47,7 +48,6 @@ function ProductItem(props: {
     const randomizedHeightAdjustment = !props.fixedBlockHeightBool ? Math.random() * 50 : 0;
     return defaultHeight + randomizedHeightAdjustment;
   }, [props.blockHeight, props.fixedBlockHeightBool]);
-  console.log(props.blockWidth);
   return (
     // @ts-ignore
     //   <Card sx={{ maxWidth: Math.round(props.blockWidth) }}>
@@ -59,7 +59,13 @@ function ProductItem(props: {
         onClick={() => handleOpenItemModal()}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div" margin={0} height={props.fixedBlockHeightBool?64:'unset'}>
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          margin={0}
+          height={props.fixedBlockHeightBool ? 64 : 'unset'}
+        >
           {product.title}
         </Typography>
         <Typography gutterBottom variant="caption" component="div">

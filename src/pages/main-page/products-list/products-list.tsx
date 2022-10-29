@@ -70,7 +70,6 @@ function ProductsList() {
       }
     });
   };
-  console.log(columnsQty);
 
   return (
     <Stack spacing={2}>

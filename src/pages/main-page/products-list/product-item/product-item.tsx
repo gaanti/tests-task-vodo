@@ -79,7 +79,7 @@ function ProductItem(props: {
           gap: '7px',
           justifyContent: 'space-between',
           width: '100%',
-          alignItems: 'flex-end',
+          alignItems: 'flex-start',
           flexWrap: 'wrap',
           position: 'absolute',
           top: 0,

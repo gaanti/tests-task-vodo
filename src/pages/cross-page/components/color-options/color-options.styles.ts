@@ -1,4 +1,15 @@
 import styled from 'styled-components';
+import Card from '@mui/material/Card';
+
+export const ColorOptionsWrapper = styled(Card)`
+  display: flex;
+  gap: 6px;
+  padding: 7px;
+  background-color: #c4c4c4!important;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+`;
 
 interface ColorCircleProps {
   color: string;

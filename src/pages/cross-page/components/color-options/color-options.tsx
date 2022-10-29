@@ -3,7 +3,7 @@ import { darkTheme } from '../../navbar';
 import { Paper, ThemeProvider } from '@mui/material';
 import { colors, product } from '../../../../app/slices/cart/types';
 import './color-options.scss';
-import { ColorCircle } from './color-options.styles';
+import { ColorCircle, ColorOptionsWrapper } from './color-options.styles';
 
 function ColorOptions(props: {
   product: product;
@@ -14,7 +14,7 @@ function ColorOptions(props: {
   if (props.product.colors.length > 0) {
     return (
       <ThemeProvider theme={darkTheme}>
-        <Paper sx={{ display: 'flex', gap: '6px', p: '7px', backgroundColor: '#c4c4c4', flexWrap: 'wrap' }}>
+        <ColorOptionsWrapper>
           {props.product.colors.map((colors) => {
             const { color } = colors;
             return (
@@ -28,7 +28,7 @@ function ColorOptions(props: {
               />
             );
           })}
-        </Paper>
+        </ColorOptionsWrapper>
       </ThemeProvider>
     );
   }

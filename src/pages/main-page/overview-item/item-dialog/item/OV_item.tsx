@@ -105,6 +105,7 @@ function OvItem(props: {
                     return (
                       <OvItemAddOn
                         addOnTitle={addOn.title}
+                        addOnPrice={addOn.price}
                         imageUrl={addOn.imageUrl}
                         chosenAddOns={chosenAddOns}
                         handleChange={handleAddOnChange}

@@ -7,13 +7,15 @@ function OvItemAddOn(props: {
   addOnTitle: string;
   handleChange(event: React.ChangeEvent<HTMLInputElement>): void;
   chosenAddOns: any;
+  addOnPrice: number;
 }) {
-  const { addOnTitle, chosenAddOns, imageUrl, handleChange } = props;
+  const { addOnTitle, chosenAddOns, imageUrl, handleChange, addOnPrice } = props;
   return (
     <Paper>
       <Stack alignItems={'center'}>
-        <Stack direction={'row'} alignItems={'center'}>
+        <Stack direction={'column'} alignItems={'center'}>
           <Typography>{addOnTitle} </Typography>
+          <Typography variant={'caption'}>${addOnPrice}</Typography>
         </Stack>
         <OrderOptionalPresent imageUrl={imageUrl} />
         <Switch name={addOnTitle} checked={chosenAddOns[addOnTitle]} onChange={(e) => handleChange(e)} />

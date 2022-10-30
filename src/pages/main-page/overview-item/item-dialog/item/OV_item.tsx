@@ -92,7 +92,7 @@ function OvItem(props: {
               </div>
               <Stack direction={'column'} alignItems={'center'}>
                 <Typography variant="h6">Quantity</Typography>
-                {<ProductQtyBar item={productForCart} activeProductSizeOption={activeProductSizeOption} />}
+                <ProductQtyBar item={productForCart} activeProductSizeOption={activeProductSizeOption} totalItemTypeQty/>
               </Stack>
             </Stack>
             <Accordion sx={{ width: '100%' }}>

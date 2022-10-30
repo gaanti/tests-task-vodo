@@ -6,9 +6,15 @@ import { product, productForCart } from '../../../app/slices/cart/types';
 import { useAppDispatch, useAppSelector } from '../../../app/store';
 import { addProductToCart, cartItemsSelector, minusProductFromCart } from '../../../app/slices/cart/cartSlice';
 import SimpleDialogDemo from './approve-product-removal';
+import { useSelector } from 'react-redux';
 
-function ProductQtyBar(props: { item: productForCart; activeProductSizeOption: string }) {
+function ProductQtyBar(props: { item: productForCart; activeProductSizeOption: string; totalItemTypeQty?: true }) {
   const { item } = props;
+  const cartItems = useSelector(cartItemsSelector);
+  const itemQty = props.totalItemTypeQty ? cartItems
+    .filter((cartItem) => cartItem.product.id == item.product.id)
+    .map((currentItem) => currentItem.quantity)
+    .reduce((totalValue, currentValue) => totalValue + currentValue, 0) : item.quantity;
   const dispatch = useAppDispatch();
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -31,7 +37,7 @@ function ProductQtyBar(props: { item: productForCart; activeProductSizeOption: s
       <IconButton aria-label="previous">
         <RemoveCircleIcon onClick={smth} />
       </IconButton>
-      <Typography>{item.quantity}</Typography>
+      <Typography>{itemQty}</Typography>
       <IconButton aria-label="next">
         <AddCircleIcon onClick={() => addItem()} />
       </IconButton>

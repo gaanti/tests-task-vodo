@@ -24,9 +24,12 @@ import ProductItem from './product-item/product-item';
 import { ConfigureProductsDisplayStylesContainer } from './configureProductsDisplayStyle.styles';
 import { MuiColorInput } from 'mui-color-input';
 import SettingsIcon from '@mui/icons-material/Settings';
+import ItemsQuantity from './display-params/items-quantity';
 
 function ProductsList() {
-  const productsInstance: product[] = data;
+  const originalProductsList: product[] = data;
+  const [itemsListQty, setItemsListQty] = useState(originalProductsList.length);
+  const productsInstance = originalProductsList.slice(0, itemsListQty);
   const itemsInCartList = useAppSelector(cartItemsSelector);
   const ref = useRef(null);
   // @ts-ignore
@@ -69,7 +72,6 @@ function ProductsList() {
       }
     });
   };
-  console.log(columnOptions());
 
   return (
     <Stack spacing={2}>
@@ -97,61 +99,11 @@ function ProductsList() {
                     <MuiColorInput value={color} onChange={handleColorChange} />
                   </Stack>
                 </Stack>
-                <Stack direction={'column'}>
-                  <Typography variant="caption">Products gap</Typography>
-                  <Slider
-                    aria-label="Temperature"
-                    defaultValue={8}
-                    value={spacing}
-                    // @ts-ignore
-                    onChange={(e) => {
-                      // @ts-ignore
-                      setSpacing(e!.target!.value!);
-                      triggerChange();
-                    }}
-                    valueLabelDisplay="auto"
-                    step={1}
-                    marks
-                    min={1}
-                    max={4}
-                  />
-                </Stack>
-                <Stack direction={'column'} alignItems={'center'} justifyContent={'space-between'}>
-                  <Stack direction={'column'} width={'68%'}>
-                    <Typography variant="caption">Products height</Typography>
-                    <Slider
-                      aria-label="Temperature"
-                      defaultValue={260}
-                      value={blockHeight}
-                      // @ts-ignore
-                      onChange={(e) => {
-                        // @ts-ignore
-                        setBlockHeight(e!.target!.value!);
-                        setFixedBlockHeightBool(true);
-                        triggerChange();
-                      }}
-                      valueLabelDisplay="auto"
-                      step={20}
-                      marks
-                      min={270}
-                      max={400}
-                    />
-                  </Stack>
-                  <Stack direction={'column'} width={'min-content'}>
-                    <FormControlLabel
-                      label="Static height"
-                      control={
-                        <Checkbox
-                          checked={fixedBlockHeightBool}
-                          onChange={() => {
-                            setFixedBlockHeightBool((prevState) => !prevState);
-                          }}
-                        />
-                      }
-                    />
-                  </Stack>
-                </Stack>
-
+                <ItemsQuantity
+                  itemsListQty={itemsListQty}
+                  originalProductsList={originalProductsList}
+                  setItemsListQty={setItemsListQty}
+                />
                 {columnOptions().length > 2 && (
                   <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Columns</InputLabel>
@@ -167,6 +119,58 @@ function ProductsList() {
                     </Select>
                   </FormControl>
                 )}
+                <Stack direction={'column'} width={'100%'}>
+                  <Typography variant="caption">Products height</Typography>
+                  <Slider
+                    aria-label="Temperature"
+                    defaultValue={260}
+                    value={blockHeight}
+                    // @ts-ignore
+                    onChange={(e) => {
+                      // @ts-ignore
+                      setBlockHeight(e!.target!.value!);
+                      setFixedBlockHeightBool(true);
+                      triggerChange();
+                    }}
+                    valueLabelDisplay="auto"
+                    step={20}
+                    marks
+                    min={270}
+                    max={400}
+                  />
+                </Stack>
+                <Stack direction={'column'}>
+                  <FormControlLabel
+                    label="Static height"
+                    control={
+                      <Checkbox
+                        checked={fixedBlockHeightBool}
+                        onChange={() => {
+                          setFixedBlockHeightBool((prevState) => !prevState);
+                        }}
+                      />
+                    }
+                  />
+                </Stack>
+                  <Stack direction={'column'}>
+                    <Typography variant="caption">Products gap</Typography>
+                    <Slider
+                      aria-label="Temperature"
+                      defaultValue={8}
+                      value={spacing}
+                      // @ts-ignore
+                      onChange={(e) => {
+                        // @ts-ignore
+                        setSpacing(e!.target!.value!);
+                        triggerChange();
+                      }}
+                      valueLabelDisplay="auto"
+                      step={1}
+                      marks
+                      min={1}
+                      max={4}
+                    />
+                  </Stack>
               </Stack>
             </ConfigureProductsDisplayStylesContainer>
           </AccordionDetails>

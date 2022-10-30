@@ -6,10 +6,15 @@ import { productForCart } from '../../../app/slices/cart/types';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import { Link } from 'react-router-dom';
 import CartItem from './cartItem/cart-item';
+import { useSelector } from 'react-redux';
+import { cartItemsSelector, totalPriceSelector } from '../../../app/slices/cart/cartSlice';
 
 export const lightTheme = createTheme({ palette: { mode: 'light' } });
 
 function CartButton(props: { cartItems: productForCart[] }) {
+  const totalPrice = useSelector(totalPriceSelector)
+  const cartItems = useSelector(cartItemsSelector);
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   let open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -52,7 +57,7 @@ function CartButton(props: { cartItems: productForCart[] }) {
             cursor: 'pointer',
           }}
         >
-          <span>Cart</span>
+          <span>${totalPrice}</span>
           <ShoppingCartIcon />
         </Paper>
       </Button>

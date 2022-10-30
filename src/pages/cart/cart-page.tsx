@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { cartItemsSelector } from '../../app/slices/cart/cartSlice';
+import { cartItemsSelector, totalPriceSelector } from '../../app/slices/cart/cartSlice';
 import CartItem from '../cross-page/cartPopOver/cartItem/cart-item';
 import {
   Button,
@@ -18,14 +18,12 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import OrderWrappingOptions from './cart-item/order-wrapping-options';
+import { productForCart } from '../../app/slices/cart/types';
 
 function CartPage() {
+  const totalPrice = useSelector(totalPriceSelector)
   const cartItems = useSelector(cartItemsSelector);
   const [value, setValue] = React.useState<null>(null);
-  const totalPrice = cartItems.reduce(
-    (previousValue, currentValue) => previousValue + currentValue.product.price * currentValue.quantity,
-    0,
-  );
   const [comment, setComment] = useState('');
   const setCommentAction = (e: string) => {
     const limit = 35;
@@ -78,16 +76,16 @@ function CartPage() {
       <Stack spacing={1}>
         <TextField
           fullWidth
-          id="standard-basic"
+          id='standard-basic'
           label="Your's comment (optional)"
-          variant="standard"
-          size="small"
+          variant='standard'
+          size='small'
           value={comment}
           onChange={(e) => setCommentAction(e.target.value)}
         />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
-            label="Prefered delivery date"
+            label='Prefered delivery date'
             value={value}
             onChange={(newValue: any) => {
               setValue(newValue);

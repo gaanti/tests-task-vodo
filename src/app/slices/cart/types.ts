@@ -24,4 +24,5 @@ export interface colors {
 export interface addOns {
   title: string;
   imageUrl: string;
+  price: number
 }

@@ -13,6 +13,7 @@ function ProductQtyBar(props: { item: productForCart; activeProductSizeOption: s
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const addItem = () => {
+    console.log(item);
     dispatch(addProductToCart(item));
   };
 

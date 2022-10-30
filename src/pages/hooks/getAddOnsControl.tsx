@@ -7,6 +7,7 @@ export function GetAddOnsControl(currentProduct: product, existingAddOns?: any[]
   for (let i = 0; i < addOnsList.length; i++) {
     // @ts-ignore
     const addOnTitle = currentProduct.addOns[addOnsList[i]].title;
+    // @ts-ignore
     possibleAddOns[addOnTitle] = false;
   }
   const [chosenAddOns, setChosenAddOns] = useState({

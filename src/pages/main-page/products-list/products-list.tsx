@@ -30,11 +30,9 @@ function ProductsList() {
   const itemsInCartList = useAppSelector(cartItemsSelector);
   const ref = useRef(null);
   // @ts-ignore
-  const masonryElemWidth = ref.current ? ref.current.offsetWidth : 0;
   const [spacing, setSpacing] = useState(2);
   const [blockHeight, setBlockHeight] = useState(350);
   const [fixedBlockHeightBool, setFixedBlockHeightBool] = useState(false);
-  const [blockWidth, setBlockWidth] = useState(adaptColumnsQty().maxColumnWidth);
 
   const res = adaptColumnsQty();
   const res2 = res.maxColumnsQty;
@@ -54,7 +52,6 @@ function ProductsList() {
     triggerChange();
   };
 
-  useEffect(() => {}, [spacing, blockWidth, columnsQty, change]);
   const [color, setColor] = React.useState('#000');
 
   const handleColorChange = (color: string) => {
@@ -72,6 +69,7 @@ function ProductsList() {
       }
     });
   };
+  console.log(columnOptions());
 
   return (
     <Stack spacing={2}>
@@ -82,7 +80,7 @@ function ProductsList() {
       </Stack>
 
       <Masonry columns={columnsQty} spacing={spacing} ref={ref}>
-        <Accordion sx={{ maxWidth: blockWidth }}>
+        <Accordion>
           <AccordionSummary expandIcon={<SettingsIcon />} aria-controls="panel1a-content" id="panel1a-header">
             <Typography>Configure appearance</Typography>
           </AccordionSummary>
@@ -118,28 +116,6 @@ function ProductsList() {
                     max={4}
                   />
                 </Stack>
-                {window.screen.width / Number(columnsQty) - 30 > 270 && (
-                  <Stack direction={'column'}>
-                    <Typography variant="caption">Products width</Typography>
-                    {/*If I turn off this slider the problem disapears*/}
-                    <Slider
-                      aria-label="Temperature"
-                      defaultValue={8}
-                      value={blockWidth}
-                      // @ts-ignore
-                      onChange={(e) => {
-                        // @ts-ignore
-                        setBlockWidth(e!.target!.value!);
-                        triggerChange();
-                      }}
-                      valueLabelDisplay="auto"
-                      step={10}
-                      marks
-                      min={270}
-                      max={window.screen.width / Number(columnsQty) - 30}
-                    />
-                  </Stack>
-                )}
                 <Stack direction={'column'} alignItems={'center'} justifyContent={'space-between'}>
                   <Stack direction={'column'} width={'68%'}>
                     <Typography variant="caption">Products height</Typography>
@@ -176,14 +152,16 @@ function ProductsList() {
                   </Stack>
                 </Stack>
 
-                {columnOptions().length > 1 && (
+                {columnOptions().length > 2 && (
                   <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Columns</InputLabel>
                     <Select
                       defaultValue={columnsQty}
                       value={columnsQty}
                       label="Product width"
-                      onChange={(e) => handleChange(e, setColumnsQty)}
+                      onChange={(e) => {
+                        handleChange(e, setColumnsQty);
+                      }}
                     >
                       {columnOptions()}
                     </Select>
@@ -199,7 +177,6 @@ function ProductsList() {
               key={product.id}
               product={product}
               itemsInCartList={itemsInCartList}
-              blockWidth={blockWidth}
               blockHeight={blockHeight}
               fixedBlockHeightBool={fixedBlockHeightBool}
             />

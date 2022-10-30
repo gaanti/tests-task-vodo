@@ -18,7 +18,6 @@ import ItemDialog from '../../overview-item/item-dialog/item-dialog';
 function ProductItem(props: {
   product: product;
   itemsInCartList: productForCart[];
-  blockWidth?: number;
   blockHeight?: number;
   fixedBlockHeightBool?: boolean;
 }) {
@@ -51,7 +50,7 @@ function ProductItem(props: {
   return (
     // @ts-ignore
     //   <Card sx={{ maxWidth: Math.round(props.blockWidth) }}>
-    <Card sx={{ maxWidth: Math.floor(props.blockWidth), position: 'relative' }}>
+    <Card sx={{ maxWidth: "auto", position: 'relative' }}>
       <StyledCardMedia
         component="img"
         height={Math.round(height)}

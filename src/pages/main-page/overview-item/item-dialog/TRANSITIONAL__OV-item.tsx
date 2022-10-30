@@ -25,8 +25,28 @@ function TRANSITIONAL__OVItem(props: {
   const dispatch = useAppDispatch();
 
   const handleAddOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    handleAddOnChang(event);
+    const keys = Object.keys(chosenAddOns)
+    let addedAddOnsQty = 0
+    for (let i = 0; i < keys.length; i++) {
+      if (chosenAddOns[keys[i]] == true) addedAddOnsQty +=1
+    }
+    if (!event.target.checked || addedAddOnsQty < 2) {
+      handleAddOnChang(event);
+    }
+    console.log(
+      `switch action ${!event.target.checked}`,
+      `added add-ons lower than 2  ${addedAddOnsQty < 2}`,
+      event.target.checked && addedAddOnsQty < 2,
+    );
   };
+  /*useEffect(()=> {
+    const keys = Object.keys(chosenAddOns)
+    let addedAddOnsQty = 0
+    for (let i = 0; i < keys.length; i++) {
+      if (chosenAddOns[keys[i]] == true) addedAddOnsQty +=1
+    }
+    console.log(addedAddOnsQty);
+  },[chosenAddOns])*/
   useEffect(() => {
     if (productExistingInCart) {
       const productToChange: productForCart = {
@@ -40,7 +60,6 @@ function TRANSITIONAL__OVItem(props: {
     }
   }, [chosenAddOns, activeProductSizeOption, activeProductColor]);
 
-  console.log('Chosen addOns', chosenAddOns);
   if (productExistingInCart) {
     return (
       <OvItem

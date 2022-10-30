@@ -27,7 +27,6 @@ function CartItem(props: { item: productForCart; children?: JSX.Element[] }) {
   };
   const calculateAddOnsCost = () => {
     const itemIndex = findindex(cartItems, item);
-    console.log(itemIndex);
     let addonsPrice = 0
     if (itemIndex > -1) {
       const currentCartItem = cartItems[itemIndex];

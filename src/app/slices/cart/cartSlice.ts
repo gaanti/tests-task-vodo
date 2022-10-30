@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export const cartSlice = createSlice({
-  name: 'rootReducer',
+  name: 'cart',
   initialState,
   reducers: {
     addProductToCart: (state, action: PayloadAction<addProductToCartInterface>) => {
@@ -84,8 +84,8 @@ export interface addProductToCartInterface {
   chosenAddOns: addOns[];
 }
 
-export const cartItemsSelector = (state: RootState) => state.sliceExample.cartItems;
-export const totalPriceSelector = (state: RootState) => state.sliceExample.totalPrice;
+export const cartItemsSelector = (state: RootState) => state.cartSlice.cartItems;
+export const totalPriceSelector = (state: RootState) => state.cartSlice.totalPrice;
 
 export const { addProductToCart, minusProductFromCart, updateProductInCart } = cartSlice.actions;
 

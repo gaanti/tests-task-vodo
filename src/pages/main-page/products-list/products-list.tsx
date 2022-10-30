@@ -18,16 +18,25 @@ import {
 
 import Masonry from '@mui/lab/Masonry';
 import { product } from '../../../app/slices/cart/types';
-import { useAppSelector } from '../../../app/store';
+import { useAppDispatch, useAppSelector } from '../../../app/store';
 import { cartItemsSelector } from '../../../app/slices/cart/cartSlice';
 import ProductItem from './product-item/product-item';
 import { ConfigureProductsDisplayStylesContainer } from './configureProductsDisplayStyle.styles';
 import { MuiColorInput } from 'mui-color-input';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ItemsQuantity from './display-params/items-quantity';
+import {
+  addOnsLimitSelector,
+  backgroundColorSelector, setAddOnsLimit,
+  setBackgroundColor,
+} from '../../../app/slices/cart/appParamsSlice';
+import { useSelector } from 'react-redux';
 
 function ProductsList() {
   const originalProductsList: product[] = data;
+  const dispatch = useAppDispatch();
+  const backgroundColor = useSelector(backgroundColorSelector);
+  const addOnsLimit = useSelector(addOnsLimitSelector);
   const [itemsListQty, setItemsListQty] = useState(originalProductsList.length);
   const productsInstance = originalProductsList.slice(0, itemsListQty);
   const itemsInCartList = useAppSelector(cartItemsSelector);
@@ -99,6 +108,10 @@ function ProductsList() {
                     <MuiColorInput value={color} onChange={handleColorChange} />
                   </Stack>
                 </Stack>
+                <Stack direction={'column'}>
+                  <Typography variant="caption">Background color</Typography>
+                  <MuiColorInput value={backgroundColor} onChange={(e) => dispatch(setBackgroundColor(e))} />
+                </Stack>
                 <ItemsQuantity
                   itemsListQty={itemsListQty}
                   originalProductsList={originalProductsList}
@@ -152,25 +165,32 @@ function ProductsList() {
                     }
                   />
                 </Stack>
-                  <Stack direction={'column'}>
-                    <Typography variant="caption">Products gap</Typography>
-                    <Slider
-                      aria-label="Temperature"
-                      defaultValue={8}
-                      value={spacing}
+                <Stack direction={'column'}>
+                  <Typography variant="caption">Products gap</Typography>
+                  <Slider
+                    aria-label="Temperature"
+                    defaultValue={8}
+                    value={spacing}
+                    // @ts-ignore
+                    onChange={(e) => {
                       // @ts-ignore
-                      onChange={(e) => {
-                        // @ts-ignore
-                        setSpacing(e!.target!.value!);
-                        triggerChange();
-                      }}
-                      valueLabelDisplay="auto"
-                      step={1}
-                      marks
-                      min={1}
-                      max={4}
-                    />
-                  </Stack>
+                      setSpacing(e!.target!.value!);
+                      triggerChange();
+                    }}
+                    valueLabelDisplay="auto"
+                    step={1}
+                    marks
+                    min={1}
+                    max={4}
+                  />
+                </Stack>
+                <Stack direction={'column'}>
+                  <Typography variant="caption">Max. add-ons quantity</Typography>
+                  <TextField
+                    value={addOnsLimit}
+                    onChange={(e) => {dispatch(setAddOnsLimit(Number(e.target.value)))}}
+                  />
+                </Stack>
               </Stack>
             </ConfigureProductsDisplayStylesContainer>
           </AccordionDetails>

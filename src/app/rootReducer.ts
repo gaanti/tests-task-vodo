@@ -1,7 +1,7 @@
-import sliceExample from './slices/cart/cartSlice';
-import { serviceExample } from './services/serviceExample';
+import cartSlice from './slices/cart/cartSlice';
+import appParamsSlice from './slices/cart/appParamsSlice';
 
 export default {
-  sliceExample: sliceExample,
-  [serviceExample.reducerPath]: serviceExample.reducer,
+  cartSlice: cartSlice,
+  appParamsSlice: appParamsSlice
 };

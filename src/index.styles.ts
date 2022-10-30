@@ -1,6 +1,12 @@
-.app-wrapper {
+import styled from 'styled-components';
+
+interface appWrapperProps {
+  bgColor: string;
+}
+
+export const AppWrapper = styled.div<appWrapperProps>`
+  background-color: ${(props) => props.bgColor};
   max-width: 100vw;
-  //min-height: 100vh;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
@@ -12,4 +18,4 @@
       padding: 1vh;
     }
   }
-}
+`;

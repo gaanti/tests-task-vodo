@@ -4,6 +4,8 @@ import OvItem from './item/OV_item';
 import { GetAddOnsControl } from '../../../hooks/getAddOnsControl';
 import { useAppDispatch } from '../../../../app/store';
 import { updateProductInCart } from '../../../../app/slices/cart/cartSlice';
+import { useSelector } from 'react-redux';
+import { addOnsLimitSelector, backgroundColorSelector } from '../../../../app/slices/cart/appParamsSlice';
 
 function TRANSITIONAL__OVItem(props: {
   productExistingInCart?: productForCart;
@@ -12,6 +14,8 @@ function TRANSITIONAL__OVItem(props: {
   mode?: 'configure' | 'overview';
 }) {
   const { product, productExistingInCart } = props;
+  const maxAddOnsQtyLimit = useSelector(addOnsLimitSelector)
+
   const [activeProductColor, setActiveProductColor] = useState(
     productExistingInCart ? productExistingInCart.color : product.colors[0],
   );
@@ -30,7 +34,7 @@ function TRANSITIONAL__OVItem(props: {
     for (let i = 0; i < keys.length; i++) {
       if (chosenAddOns[keys[i]] == true) addedAddOnsQty +=1
     }
-    if (!event.target.checked || addedAddOnsQty < 2) {
+    if (!event.target.checked || addedAddOnsQty < maxAddOnsQtyLimit) {
       handleAddOnChang(event);
     }
     console.log(
